@@ -50,3 +50,11 @@ just for routing can read
     http://web-work-assessment.local/
 
 
+# How to see architecture.wsd
+1. install chocholatey
+2. install plantUML or run : choco install plantuml
+3. in vs code install "PlantUML"
+4. open architecture.wsd ,
+5. right click and choose "Preview Current Diagram"
+6. or alt+D in architecture.wsd 
+
