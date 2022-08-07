@@ -6,13 +6,21 @@ class Router
 {
     private static array $routes = [];
 
-    public static function add(string $method,string $path, string $controller, string $function): void
+    public static function add(
+                                string $method,
+                                string $path,
+                                string $controller,
+                                string $function,
+                                array $middlewares = []
+                                ): void
     {
+
         self::$routes[] = [
             'method' => $method,
             'path' => $path, // regex
             'controller' => $controller,
-            'function' => $function
+            'function' => $function,
+            'middleware' => $middlewares,
         ];
     }
 
@@ -30,9 +38,20 @@ class Router
             $pattern = '#^' . $route['path'] . '$#';
             if (preg_match($pattern, $path, $variables) && $method == $route['method'] ) {
 
+                // call middleware / checking before move route
+                foreach ($route['middleware'] as $middleware) {
+                    $instance = new $middleware;
+                    $instance->before();
+                }
+
+                // execute move route
                 $function = $route['function'];
                 $controller = new $route['controller'];
-                $controller->$function();
+                // $controller->$function();
+
+                array_shift($variables);
+                call_user_func_array([$controller, $function], $variables); 
+
 
                 return;
             }

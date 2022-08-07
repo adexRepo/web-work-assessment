@@ -2,6 +2,8 @@
 
 namespace web\work\assessment\Controller;
 
+use web\work\assessment\App\View;
+
 class HomeController
 {
     public function index():void
@@ -11,18 +13,27 @@ class HomeController
             'content' => 'Welcome to the home page'
         ];
 
-        require __DIR__ . '/../View/Home/index.php';
-        echo '<html lang="en">';
+        View::render('Home/index', $model);
     }
 
     public function hello()
     {
-        echo '<h1>Hello hello</h1>';
+        $model =[
+            'title' => 'Home',
+            'content' => 'Welcome to the hello page'
+        ];
+
+        View::render('Home/index', $model);
     }
 
     public function world()
     {
-        echo '<h1>Hello world</h1>';
+        $model =[
+            'title' => 'world',
+            'content' => 'Welcome to the world page'
+        ];
+
+        View::render('Home/index', $model);
     }
 
     public function loginI()

@@ -15,5 +15,6 @@ class RegexTest extends TestCase
         $this->assertEquals(1, $result);
         $this->assertEquals('hello', $matches['controller']);
         $this->assertEquals('world', $matches['function']);
+        echo 'Regex test passed';
     }
 }
