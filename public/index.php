@@ -11,4 +11,4 @@ Router::add('GET', '/login', HomeController::class, 'login');
 Router::add('GET', '/hello', HomeController::class, 'hello');
 Router::add('GET', '/world', HomeController::class, 'world',[AuthMiddleware::class]);
 
-Router::run();
+Router::run();;
