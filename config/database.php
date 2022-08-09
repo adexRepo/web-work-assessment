@@ -12,7 +12,7 @@ function getDatabaseConfig():array
         'host' => 'localhost',
         'port' => '3306',
         'dbname' => 'db_web_work_assessment',
-        'user' => 'root',
+        'username' => 'root',
         'password' => '',
         'charset' => 'utf8'
     ];
@@ -24,7 +24,7 @@ function getDatabaseConfig():array
         'host' => 'localhost',
         'port' => '3306',
         'dbname' => 'db_web_work_assessment',
-        'user' => 'root',
+        'username' => 'root',
         'password' => '',
         'charset' => 'utf8'
     ];
@@ -35,12 +35,12 @@ function getDatabaseConfig():array
         [
             "test" =>[
                 "url"=>$urlTest,
-                "user"=>"root",
+                "username"=>"root",
                 "password"=>"",
             ],
             "prod" =>[
                 "url"=>$urlProd,
-                "user"=>"root",
+                "username"=>"root",
                 "password"=>"",
             ],
         ]
