@@ -6,8 +6,16 @@ namespace web\work\assessment\App;
 
 class View
 {
-    public static function render(string $view, array $model = []): void
+    public static function render(string $view, array $model = [], string $isLogin): void
     {
-        require __DIR__ . '/../View/' . $view . '.php';
+        if($isLogin){
+
+            require __DIR__ . '/../View/header.php';
+            require __DIR__ . '/../View/' . $view . '.php';
+            require __DIR__ . '/../View/footer.php';
+
+            return;
+        }
+        require __DIR__ . '/../View/' . $view . '/.php';
     }
 }
