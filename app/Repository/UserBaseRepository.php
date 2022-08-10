@@ -4,9 +4,13 @@ namespace web\work\assessment\Repository;
 
 use web\work\assessment\Domain\UserBase;
 
+/**
+ * @author Adek Kristiyanto <dkkrstnt@gmail.com>
+ * @package web\work\assessment\Repository
+ */
+
 class UserBaseRepository
 {
-
     private \PDO $connection;
 
     public function __construct(\PDO $connection)
@@ -21,9 +25,6 @@ class UserBaseRepository
                 user_base(user_id,name, gender, password)
                 VALUES(?, ?, ?, ?)"
         );
-
-        // $passwordHash = password_hash($UserBase->getPassword(), 'rahasiaAdek');
-        // $passwordBase64 = base64_encode($passwordHash);
 
         $statement->execute([
             $UserBase->getUserId(),
