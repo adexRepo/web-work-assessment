@@ -40,11 +40,11 @@
                             <h3 class="mb-5">Registration Account</h3>
                             <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/users/register">
                                 <div class="form-floating mb-3">
-                                    <input name="name" type="text" required class="form-control" id="name" placeholder="Username" autofocus>
+                                    <input name="name" type="text"  value="<?= $_POST['name'] ?? ''?>"  required class="form-control" id="name" placeholder="Username" autofocus>
                                     <label for="name">Name</label>
                                 </div>
                                 <div class="mb-3">
-                                    <select name="gender" id="gender" required class="form-select" aria-label="Default select example">
+                                    <select name="gender" id="gender" value="<?= $_POST['gender'] ?? ''?>"  required class="form-select" aria-label="Default select example">
                                         <option selected disabled value="" >Choose Gender</option>
                                         <option  value="0">Female</option>
                                         <option  value="1">Male</option>
@@ -55,11 +55,11 @@
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input name ="password" type="password" id="confirm_password" class="form-control validate" required id="rePassword" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" placeholder="Password">
-                                    <label for="rePassword">Re-Password <span id='message'></span></label>
+                                    <input name ="confirm_password" type="password" id="confirm_password" class="form-control validate" required id="rePassword" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" placeholder="Password">
+                                    <label for="confirm_password">Re-Password <span id='message'></span></label>
                                 </div>
                                 <button class="w-100 btn btn-lg btn-primary" type="submit">Send Request</button>
-                                <p class="text-center mt-3"> <a class="mb-5" href="/users/register">back to login</a> </p>
+                                <p class="text-center mt-3"> <a class="mb-5" href="/users/login">back to login</a> </p>
                             </form>
                         </div>
                     </div>
