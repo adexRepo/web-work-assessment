@@ -8,6 +8,7 @@ use web\work\assessment\Config\Database;
 use web\work\assessment\Repository\UserBaseRepository;
 use web\work\assessment\Model\UserRegisterRequest;
 use web\work\assessment\Exception\ValidationException;
+use web\work\assessment\Model\UserLoginRequest;
 
 class UserController
 {
@@ -22,16 +23,20 @@ class UserController
         $this->userService = new UserService($userBaseRepository); // service + repository
     }
 
-    public  function register()
+    public function register()
     {
         View::render('User/register' ,[], false );
     }
 
     public function postRegister()
     {
+
+        $totalUser = $this->userService->getCountIdRegistered()+1;
+        $newUserId = "user{$totalUser}";
+
+
         $request = new UserRegisterRequest();
-        // $request->setUserId($_POST['userId']);
-        $request->setUserId('user01');
+        $request->setUserId($newUserId);
         $request->setName($_POST['name']);
         $request->setGender($_POST['gender']);
         $request->setPassword($_POST['password']);
@@ -39,41 +44,35 @@ class UserController
             // execute service
             $this->userService->register($request);
 
-            View::render('User/register', ['success' => 'Register Success'], false);
+            View::redirect('/users/login');
             
         } catch (ValidationException $e) {
             //code...
             View::render('User/register' ,[
-                'error' => 'Email already exists '.$e->getMessage(),
+                'error' => $e->getMessage(),
             ], false );
 
         }
     }
-    public  function login()
+    public function login()
     {
-        View::render('User/register' ,[], false );
+        View::render('User/login' ,[], false );
     }
 
     public function postLogin()
     {
-        $request = new UserRegisterRequest();
-        // $request->setUserId($_POST['userId']);
-        $request->setUserId('user01');
-        $request->setName($_POST['name']);
-        $request->setGender($_POST['gender']);
+        $request = new UserLoginRequest();
+        $request->setUserId($_POST['userId']);
         $request->setPassword($_POST['password']);
         try {
             // execute service
-            $this->userService->register($request);
-
-            View::render('User/register', ['success' => 'Register Success :D'], false);
-            
+            $this->userService->login($request);
+            View::redirect('/');
         } catch (ValidationException $e) {
             //code...
-            View::render('User/register' ,[
-                'error' => 'Email already exists! -_-'.$e->getMessage(),
+            View::render('User/login' ,[
+                'error' => $e->getMessage(),
             ], false );
-
         }
     }
 }

@@ -8,7 +8,7 @@ class HomeController
 {
     function index(): void
     {
-        View::render('home/index',["title"=>"Login Dong"],false);
+        View::render('home/index',["title"=>"Login Dong"],true);
     }
 
 }

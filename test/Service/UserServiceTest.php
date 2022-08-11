@@ -7,6 +7,7 @@ use web\work\assessment\Repository\UserBaseRepository;
 use web\work\assessment\Model\UserRegisterRequest;
 use web\work\assessment\Exception\ValidationException;
 use web\work\assessment\Domain\UserBase;
+use web\work\assessment\Model\UserLoginRequest;
 
 class UserServiceTest extends TestCase
 {
@@ -72,9 +73,52 @@ class UserServiceTest extends TestCase
         $req->setPassword('rahasiaAdek1');
 
         $this->userService->register($req);
+    }
 
+    public function testLoginNotFound(){
+        $this->expectException(ValidationException::class);
+        $req = new UserLoginRequest();
+        $req->setUserId('user09');
+        $req->setPassword('rahasiaAdek1');
+    
+        $this->userService->login($req);
+    }
+
+    public function testLoginWrongPassword(){
         
+        $reqCreateNewUser = new UserBase();
+        $reqCreateNewUser->setUserId('user01');
+        $reqCreateNewUser->setName('Adek Kristiyanto');
+        $reqCreateNewUser->setGender(1);
+        $reqCreateNewUser->setPassword(password_hash('rahasiaAdek1', PASSWORD_BCRYPT));
+        
+        $this->expectException(ValidationException::class);
+        $req = new UserLoginRequest();
+        $req->setUserId('user01');
+        $req->setPassword('salahj');
+    
+        $this->userService->login($req);
+    }
 
+    public function testLoginSuccess(){
+        
+        $reqCreateNewUser = new UserBase();
+        $reqCreateNewUser->setUserId('user01');
+        $reqCreateNewUser->setName('Adek Kristiyanto');
+        $reqCreateNewUser->setGender(1);
+        $reqCreateNewUser->setPassword(password_hash('rahasiaAdek1', PASSWORD_BCRYPT));
+        
+        $this->expectException(ValidationException::class);
+        $req = new UserLoginRequest();
+        $req->setUserId('user01');
+        $req->setPassword('rahasiaAdek1');
+    
+        $response = $this->userService->login($req);
+
+        self::assertEquals($reqCreateNewUser->getUserId(), $response->user->getUserId());
+        self::assertEquals($reqCreateNewUser->getName(), $response->user->getName());
+        self::assertEquals($reqCreateNewUser->getGender(), $response->user->getGender());
+        self::assertEquals($reqCreateNewUser->getPassword(), $response->user->getPassword());
     }
 
 }

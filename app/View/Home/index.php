@@ -1,42 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign in</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-    </head>
-<body>
-    <section class="vh-100" style="background-color: #fafafa;">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">
-                            <h3 class="mb-5">Sign In</h3>
-                            <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/users/login">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="id" placeholder="Username">
-                                    <label for="id">Username</label>
+<main class="flex-shrink-0" >
+        <div class="container shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-0 text-center" >
+                <div class="p-md-4 p-4 border rounded-3" >
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-lg-12">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Attendance Today</div><hr/>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">11-08-2022 07:59:42</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="password" placeholder="Password">
-                                    <label for="password">Password</label>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-lg-12">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Sended Package
+                                            </div><hr/>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
-                                <p class="text-center mt-3"> <a href="#">Forgot password?</a> </p>
-                                <p>Don't have an account? <a href="">Register</a></p>
-                            </form>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body ">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-lg-12">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Total Package</div>
+                                                <hr/>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-lg-12">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Commission</div><hr/>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 215,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class=" col-lg-12 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3">
+                                <h6 class="m-1 font-weight-bold text-primary">Daily Report</h6>
+                            </div>
+                            <div class="card-body mt-8 py-9">
+                                <div class="text-center">
+                                    <img class="img-fluid px-3 px-sm-4 mt-4 mb-4" style="width: 25rem;"
+                                        src="img/undraw_posting_photo.svg" alt="...">
+                                </div>
+                                <p>Add some quality, svg illustrations to your project courtesy of <a
+                                        target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                                    constantly updated collection of beautiful svg images that you can use
+                                    completely free and without attribution!</p>
+                                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                                    unDraw &rarr;</a>
+                                    <hr/>
+                                <button class="btn btn-primary">Send Report</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
-    </section>
-</body>
-</html>
+    </main>

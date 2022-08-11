@@ -57,6 +57,18 @@ class UserBaseRepository
         }
     }
 
+    public function findCountIdRegistered():int
+    {
+        $statement = $this->connection->prepare(
+            "SELECT COUNT(user_id) FROM user_base"
+        );
+        $statement->execute();
+        $row = $statement->fetch();
+        if($row === false) return 0;
+        return $row[0];
+    }
+
+
     public function deleteAll(): void
     {
         $statement = $this->connection->prepare(
