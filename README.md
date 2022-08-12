@@ -1,11 +1,14 @@
 # TUGAS KULIAH PEMROGRAMAN WEB LANJUT
 [web-work-assessment]
 
-# Note
-.htaccess >> pakai punya nya CodeIgniter4
-just for routing can read
+[NOTE][untuk pak akbar ::]
+1. bisa buka di app/View/template_for_testing bagian dashboard
+2. dan bisa buka di bussiness.md >>> untuk gambaran app ini mau kemana dan apa aja yang ditampilin 
 
-# How to run in local
+# Note
+.htaccess >> pakai punya nya orang, just make for routing can read again / rewrite in browser,
+
+# How to run in local first way
 1. clone this project from github https://github.com/adexRepo/web-work-assessment.git
 2. install composer if still not install composer 
     this project just use 
@@ -33,21 +36,31 @@ just for routing can read
             ServerAdmin admin@web-work-assessment.local
             DocumentRoot "C:/development/github/web-work-assessment/public"
             ## DocumentRoot part depends on the place your project web-work-assessment path 
-            ServerName php-mvc.local
-            ErrorLog "logs/php-mvc.local-error.log"
-            CustomLog "logs/php-mvc.local-access.log" common
+            ServerName web-work-assessment.local
+            ErrorLog "logs/web-work-assessment.local-error.log"
+            CustomLog "logs/web-work-assessment.local-access.log" common
         </VirtualHost>
 6. go to C:\Windows\System32\drivers\etc
     a. open hosts and add
         $ Development
-        127.0.0.1 php-mvc.local
-    b. you can change php-mvc to web-work-assessment if you want
-    c. but if you change that, step 5 you need to change all php-mvc to web-work-assessment also
-7. just running
-    http://php-mvc.local/
-
-*if you change step 5 and step 6 php-mvc to web-work-assessment you can open
+        127.0.0.1 web-work-assessment.local
+    b. you can change web-work-assessment to tralala if you want
+    c. but if you change that, step 5 you need to change all web-work-assessment to web-work-assessment also
+7. run xampp apache and mysql ,, dont forget to add ddl in your db    
+8. just running
     http://web-work-assessment.local/
+
+*if you change step 5 and step 6 web-work-assessment to web-work-assessment you can open
+    http://web-work-assessment.local/
+
+# how to run in local second way
+1. add ddl db and add composer also
+2. if you using vs code, just open terminal that terminal go to public and run php -S localhost:8080
+    but you must also need to run mysql in xampp
+3. if you just want to using xampp for run web server,, yaa just run apache and mysql
+    but you need to follow step 3 in first way (cara pertama diatas)
+3. by default localhost:8080 just open in browser
+4. for now this app just can open sign in and register, register already worked but sign in still procced
 
 
 # How to see architecture.wsd
@@ -57,4 +70,7 @@ just for routing can read
 4. open architecture.wsd ,
 5. right click and choose "Preview Current Diagram"
 6. or alt+D in architecture.wsd 
+
+* or open https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+copy paste content in architecture.wsd to that demo server
 
