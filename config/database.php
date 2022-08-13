@@ -5,13 +5,14 @@ function getDatabaseConfig():array
 {
 
     // environment variables
+    // for now test same with prod .. mager buat db baru dan table2 baru nya
 
     // test / dev / uat
     $test = [
         'driver' => 'mysql',
         'host' => 'localhost',
         'port' => '3306',
-        'dbname' => 'db_web_work_assessment',
+        'dbname' => 'db_web_work_assessment', 
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8'

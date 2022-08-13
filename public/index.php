@@ -12,6 +12,10 @@ Database::getConnection('prod');
 
 // Home Controller
 Router::add('GET', '/', HomeController::class, 'index',[]);
+Router::add('GET', '/home/attendance', HomeController::class, 'attendance',[]);
+Router::add('GET', '/home/promotions', HomeController::class, 'promotion',[]);
+Router::add('GET', '/home/performance', HomeController::class, 'performance',[]);
+Router::add('GET', '/home/aboutUs', HomeController::class, 'aboutUs',[]);
 
 // User Controller
 Router::add('GET', '/users/register', UserController::class, 'register',[]);

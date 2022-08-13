@@ -17,7 +17,7 @@ class UserBase
     private   int        $contract      ;
     private   DateTime   $dateRegist    ;
     private   DateTime   $dateUpdated   ;
-    private   string     $authUser      ;
+    private   int     $authUser      ;
     private   string     $team          ;
     private   string     $departement   ;
     private   string     $branch_id     ;
@@ -98,21 +98,6 @@ class UserBase
 	 */
 	function setStatus(int $status): self {
 		$this->status = $status;
-		return $this;
-	}
-	/**
-	 * @return string
-	 */
-	function getAuthUser(): string {
-		return $this->authUser;
-	}
-	
-	/**
-	 * @param string $authUser 
-	 * @return UserBase
-	 */
-	function setAuthUser(string $authUser): self {
-		$this->authUser = $authUser;
 		return $this;
 	}
 	/**
@@ -233,6 +218,21 @@ class UserBase
 	 */
 	function setRemark(string $remark): self {
 		$this->remark = $remark;
+		return $this;
+	}
+	/**
+	 * @return int
+	 */
+	function getAuthUser(): int {
+		return $this->authUser;
+	}
+	
+	/**
+	 * @param int $authUser 
+	 * @return UserBase
+	 */
+	function setAuthUser(int $authUser): self {
+		$this->authUser = $authUser;
 		return $this;
 	}
 }
