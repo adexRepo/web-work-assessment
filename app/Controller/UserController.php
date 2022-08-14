@@ -30,10 +30,8 @@ class UserController
 
     public function postRegister()
     {
-
-        $totalUser = $this->userService->getCountIdRegistered()+1;
+        $totalUser = $this->userService-> getCountIdRegistered()+1;
         $newUserId = "user{$totalUser}";
-
 
         $request = new UserRegisterRequest();
         $request->setUserId($newUserId);
@@ -67,9 +65,9 @@ class UserController
         try {
             // execute service
             $this->userService->login($request);
+
             View::redirect('/');
         } catch (ValidationException $e) {
-            //code...
             View::render('User/login' ,[
                 'error' => $e->getMessage(),
             ], false );

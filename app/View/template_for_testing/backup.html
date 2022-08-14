@@ -1,0 +1,40 @@
+<div class=" col-lg-6 mb-4 ">
+    <div class="card shadow">
+        <div class="card-header py-2">
+            <h5 class="m-1 font-weight-bold text-primary">Daily Report</h5>
+        </div>
+        <div class="card-body mt-4">
+            <form class="p-3 p-md-5" most="post" action="/">
+                <div class="form-floating mb-3">
+                    <input name="name" type="text" class="form-control"  disabled id="name" placeholder="Username">
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input name="branch" type="text" class="form-control"  disabled id="branch" placeholder="Username">
+                    <label for="branch">Branch</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input name="date" type="date" class="form-control"  disabled id="date" placeholder="Username">
+                    <label for="date">Date</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input name="totPackage" type="text" class="form-control" id="totPackage" placeholder="Username">
+                    <label for="totPackage">Total Package Today</label>
+                </div>
+                <div class="mb-3">
+                    <select name="remarkCode" id="remarkCode" class="form-select p-3" aria-label="Default select example">
+                        <option selected value="0" >Choose Note Category</option>
+                        <option  value="1">Info</option>
+                        <option  value="2">Tips</option>
+                        <option  value="3">Problem</option>
+                    </select>
+                </div>
+                <div class="form-floating">
+                    <label for="remark">Note</label>
+                    <textarea name="remark" class="form-control" id="remark" rows="1" style="height:auto" ></textarea>
+                </div>
+            </form>
+            <button class="btn btn-primary">Send Report</button>
+        </div>
+    </div>
+</div>

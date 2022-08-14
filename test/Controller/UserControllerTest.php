@@ -73,7 +73,7 @@ namespace web\work\assessment\Controller;
             $user->password = "Trst2343rf!@#";
             
 
-            $this->userRepository->save($user);
+            $this->UserBaseRepository->save($user);
 
             $_POST['userId'] = 'user1';
             $_POST['name'] = 'Eko';
@@ -88,6 +88,41 @@ namespace web\work\assessment\Controller;
             $this->expectOutputRegex("[Password]");
             $this->expectOutputRegex("[Register new User]");
             $this->expectOutputRegex("[User Id already exists]");
+        }
+
+        public function testLogin()
+        {
+            $this->userController->login();
+            $this->expectOutputRegex("[Login]");
+            $this->expectOutputRegex("[username]");
+            $this->expectOutputRegex("[password]");
+        }
+
+        public function testLoginSuccess()
+        {
+            $user = new UserBase();
+
+            $user->setUserId("user1");
+            $user->setName("Adek");
+            $user->setGender(1);
+            $user->setPassword(password_hash("rahasia", PASSWORD_BCRYPT));
+
+            $this->userBaseRepository->save($user);
+
+            $_POST['userId'] = 'user1';
+            $_POST['password'] = 'rahasia';
+
+            // here there is issue idk
+            // 1) web\work\assessment\Controller\UserControllerTest::testLoginSuccess
+            //     Cannot modify header information - headers already sent by (output started at 
+            //     C:\development\github\web-work-assessment\vendor\phpunit\phpunit\src\Util\Printer.php:104)
+            // issue : 
+            //  https://stackoverflow.com/questions/8028957/how-to-fix-headers-already-sent-error-in-php
+            // i think this issue because of php unit line 100 in Printer.php send header first
+            //  for getting session, line 100 is using 'print' for us know buffer, anyway not my code..!
+            $this->userController->postLogin();
+
+            $this->expectOutputRegex("[Location: /]");
         }
 
     }
