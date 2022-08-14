@@ -49,10 +49,10 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Send Report</button>
-                              <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"  data-bs-dismiss="modal"><i
+                                    class="fas fa-download fa-sm text-white-50"></i>Close</a>
+                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-download fa-sm text-white-50"></i>Send Report</a>
                             </div>
                           </div>
                         </div>

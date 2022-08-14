@@ -1,8 +1,6 @@
 <?php
 
-
 namespace web\work\assessment\App;
-
 
 class View
 {

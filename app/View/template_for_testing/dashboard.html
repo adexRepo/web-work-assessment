@@ -15,12 +15,22 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 </head>
-
 <style>
-    .borders-bottom {
-        border-bottom: 1px solid #ccc;
-        box-shadow: none;
-    }
+    .item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right:-20px;
+    top:10px;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    padding:5px 10px;
+    font-size:20px;
+}
 </style>
 
 <body>
@@ -43,9 +53,36 @@
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#advToCompany">Advice to company</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logout">Logout</a></li>
                     </ul>
                 </div>
+
+                    <!-- modal logout -->
+                    <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="logout" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="logout">Logout</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body text-center">
+                                    <h5>Are you soure want to logout ?</h5>
+                                    <hr/>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logout">
+                                        Yes, Logout
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logout">
+                                        Not really
+                                    </button>
+                                  </div>
+                            </div>
+                            <div class="modal-footer">
+                                <p> Si Cepat Mantap</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
 
                     <!-- modal advice to company -->
                     <div class="modal fade" id="advToCompany" tabindex="-1" aria-labelledby="advToCompany" aria-hidden="true">
@@ -79,7 +116,7 @@
 
                     <!-- modal my profile -->
                     <div class="modal fade" id="myProfile" tabindex="-1" aria-labelledby="myProfile" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
                             <h5 class="modal-title" id="myProfile">My Profile</h5>
@@ -88,64 +125,61 @@
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-md-5">
-                                            <img class="img-fluid rounded" src="../assets/images/no-photo.jpg">
-                                            <div class="col-md-0">
-                                                <label for="departemen" class="col-form-label">Departement : </label>
-                                                <input name="departemen" type="text" class="form-control" id="departemen" required>
-                                            </div>
-                                            <div class="col-md-0">
-                                                <label for="team" class="col-form-label">Team : </label>
-                                                <input name="team" type="text" class="form-control borders-bottom" id="login" required>
+                                        <div class="col-md-5 hstack gap-3">
+                                            <div class="item text-center">
+                                                <a href="#">
+                                                    <span class="notify-badge bg-primary">Active</span>
+                                                    <img id="test" class="img-fluid rounded shadow-sm mb-2" src="../assets/images/no-photo.jpg">
+                                                </a>
                                             </div>
                                         </div>
-                                            <div class="row col-mb-7">
-                                                <div class="col-sm-8">
+                                        <div class="row col">
+                                            <div class="row">
+                                                <div class="col-sm-6">
                                                     <label for="name" class="col-form-label">Name : </label>
-                                                    <input name="name" type="text" class="form-control" id="name" required>
+                                                    <input name="name" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="name" disabled>
                                                 </div>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-6">
                                                     <label for="phone" class="col-form-label">Phone : </label>
-                                                    <input name="phone" type="text" class="form-control borders-bottom" id="phone" required>
+                                                    <input name="phone" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="phone" disabled>
                                                 </div>
-                                                <div class="col-sm-8">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
                                                     <label for="email" class="col-form-label">Email : </label>
-                                                    <input name="email" type="text" class="form-control borders-bottom" id="email" required>
+                                                    <input name="email" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="email" disabled>
                                                 </div>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-6">
                                                     <label for="branch" class="col-form-label">Branch : </label>
-                                                    <input name="branch" type="text" class="form-control borders-bottom" id="branch" required>
+                                                    <input name="branch" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="branch" disabled>
                                                 </div>
                                             </div>
-                                            <div class="row col-md-5">
-                                                
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label for="departemen" class="col-form-label">Departement : </label>
+                                                    <input name="departemen" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="departemen" disabled>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="team" class="col-form-label">Team : </label>
+                                                    <input name="team" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="login" disabled>
+                                                </div>
                                             </div>
-                                            <div class="col mb-0">
-                                                <label for="categoryEmploye" class="col-form-label">Category Employee : </label>
-                                                <input name="categoryEmploye" type="text" class="form-control borders-bottom" id="categoryEmploye" required>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label for="AuthAndcontract" class="col-form-label">Employee Type : </label>
+                                                    <input name="AuthAndcontract" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="AuthAndcontract" disabled>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="registered" class="col-form-label">Date Registered : </label>
+                                                    <input name="registered" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="registered" disabled>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
-                                <!-- <form>
-                                    <div class="mb-4">
-                                        <img class="img-fluid px-2 px-md-4 rounded" src="../assets/images/no-photo.jpg">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="recipient-name" class="col-form-label">About :</label>
-                                        <input name="about" type="text" class="form-control" id="recipient-name" required>
-                                        <input name="about" type="text" class="form-control" id="recipient-name" required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="message-text" class="col-form-label">Message :</label>
-                                        <textarea name="remark" class="form-control" id="message-text" required></textarea>
-                                    </div>
-                                </form> -->
                             </div>
                             <div class="modal-footer">
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"  data-bs-dismiss="modal"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Close</a>
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Send message</a>
+                                <p> Si Cepat Mantap</p>
                             </div>
                         </div>
                         </div>

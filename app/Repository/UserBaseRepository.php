@@ -20,13 +20,13 @@ class UserBaseRepository
 
     public function save(UserBase $UserBase):UserBase
     {
-        $statement = $this->connection->prepare(
+        $query = $this->connection->prepare(
             "INSERT INTO 
                 user_base(user_id,name, gender, password)
                 VALUES(?, ?, ?, ?)"
         );
 
-        $statement->execute([
+        $query->execute([
             $UserBase->getUserId(),
             $UserBase->getName(),
             $UserBase->getGender(),
@@ -37,43 +37,43 @@ class UserBaseRepository
 
     public function findById(string $userId): ?UserBase
     {
-        $statement = $this->connection->prepare(
+        $query = $this->connection->prepare(
             "SELECT * FROM user_base WHERE user_id = ?"
         );
-        $statement->execute([$userId]);
-        $row = $statement->fetch();
-        if($row === false) return null;
+        $query->execute([$userId]);
+        $outputQuery = $query->fetch();
+        if($outputQuery === false) return null;
 
         try {
             $user = new UserBase();
-            $user->setUserId($row['user_id']);
-            $user->setName($row['name']);
-            $user->setGender($row['gender']);
-            $user->setPassword($row['password']);
+            $user->setUserId($outputQuery['user_id']);
+            $user->setName($outputQuery['name']);
+            $user->setGender($outputQuery['gender']);
+            $user->setPassword($outputQuery['password']);
     
             return $user;
         }finally{
-            $statement->closeCursor();
+            $query->closeCursor();
         }
     }
 
     public function findCountIdRegistered():int
     {
-        $statement = $this->connection->prepare(
+        $query = $this->connection->prepare(
             "SELECT COUNT(user_id) FROM user_base"
         );
-        $statement->execute();
-        $row = $statement->fetch();
-        if($row === false) return 0;
-        return $row[0];
+        $query->execute();
+        $outputQuery = $query->fetch();
+        if($outputQuery === false) return 0;
+        return $outputQuery[0];
     }
 
 
     public function deleteAll(): void
     {
-        $statement = $this->connection->prepare(
+        $query = $this->connection->prepare(
             "DELETE FROM user_base"
         );
-        $statement->execute();
+        $query->execute();
     }
 }

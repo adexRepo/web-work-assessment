@@ -18,13 +18,11 @@
                 
             <!-- NOTIFICATION -->
                 <?php 
-                if(!empty($model['error']) || !empty($model['success'])){ 
-                    $color = !empty($model['error']) ? 'danger': 'success';
-                    $content = !empty($model['error']) ? $model['error'] : $model['success'];
+                if(isset($model['error'])){ 
                     ?>
                     <div class="row">
-                        <div class="alert alert-<?= $color ?> text-center" role="alert">
-                            <?= $content?>
+                        <div class="alert alert-danger text-center" role="alert">
+                            <?= $model['error'] ?>
                         </div>
                     </div>
                 <?php }?>
