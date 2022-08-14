@@ -1,15 +1,10 @@
 # TUGAS KULIAH PEMROGRAMAN WEB LANJUT
 [web-work-assessment]
 
-[NOTE][untuk pak akbar ::]
-1. bisa buka di app/View/template_for_testing bagian dashboard
-2. dan bisa buka di bussiness.md >>> untuk gambaran app ini mau kemana dan apa aja yang ditampilin 
-
 # Note
 .htaccess >> pakai punya nya orang, just make for routing can read again / rewrite in browser,
 
 # How to run in local first way
-# How to run in local
 1. clone this project from github https://github.com/adexRepo/web-work-assessment.git
 2. install composer if still not install composer https://getcomposer.org/Composer-Setup.exe
     this project just use 
@@ -55,7 +50,6 @@
     but you need to follow step 3 in first way (cara pertama diatas)
 3. by default localhost:8080 just open in browser
 4. for now this app just can open sign in and register, register already worked but sign in still procced
-
 
 # How to see architecture.wsd
 1. install chocholatey
