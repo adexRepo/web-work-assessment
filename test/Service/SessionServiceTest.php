@@ -36,12 +36,10 @@ class SessionServiceTest extends TestCase
 
     public function testCreate()
     {
-
         $session = $this->sessionService->create('user1');
         $sessionId = $session->getSessionId();
-        var_dump($sessionId);
 
-        $this->expectOutputRegex("[WEB-WORK-SESSION : $sessionId]");
+        $this->expectOutputRegex("[WEB-WORK-SESSION: $sessionId]");
 
         $result = $this->sessionRepository->findById($sessionId);
         self::assertEquals('user1',$result->getUserId());

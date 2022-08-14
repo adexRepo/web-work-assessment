@@ -1,12 +1,12 @@
 <?php
 
-// namespace web\work\assessment\App {
+namespace web\work\assessment\App {
 
-//     function header(string $value){
-//         echo $value;
-//     }
+    function header(string $value){
+        echo $value;
+    }
 
-// }
+}
 
 namespace web\work\assessment\Service {
 
