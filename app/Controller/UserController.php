@@ -4,16 +4,18 @@ namespace web\work\assessment\Controller;
 
 use web\work\assessment\app\View;
 use web\work\assessment\Service\UserService;
+use web\work\assessment\Service\SessionService;
 use web\work\assessment\Config\Database;
 use web\work\assessment\Repository\UserBaseRepository;
+use web\work\assessment\Repository\SessionRepository;
 use web\work\assessment\Model\UserRegisterRequest;
 use web\work\assessment\Exception\ValidationException;
 use web\work\assessment\Model\UserLoginRequest;
 
 class UserController
 {
-
     private UserService $userService;
+    private SessionService $sessionService;
 
     public function __construct()
     {
@@ -21,6 +23,9 @@ class UserController
         $connection = Database::getConnection(); // alat koneksi
         $userBaseRepository = new UserBaseRepository($connection); // dikoneksiin ke table user_base
         $this->userService = new UserService($userBaseRepository); // service + repository
+
+        $sessionRepository = new SessionRepository($connection);
+        $this->sessionService =  new SessionService($sessionRepository, $userBaseRepository);
     }
 
     public function register()
@@ -64,7 +69,10 @@ class UserController
         $request->setPassword($_POST['password']);
         try {
             // execute service
-            $this->userService->login($request);
+            $response = $this->userService->login($request);
+            $response = $response->getUser();
+            
+            $this->sessionService->create($response->getUserId());
 
             View::redirect('/');
         } catch (ValidationException $e) {
