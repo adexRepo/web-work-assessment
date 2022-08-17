@@ -27,6 +27,7 @@ class HomeController
     function index(): void
     {
         $userCurrent = $this->sessionService->currentSession();
+        // $userTodayAttendance =
         if($userCurrent == null)
         {
             View::render('User/login',[

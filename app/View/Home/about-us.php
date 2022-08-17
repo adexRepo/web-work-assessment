@@ -11,7 +11,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                            src="../assets/images/no-photo.jpg" alt="...">
+                                            src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h3><span class="badge bg-primary">ADEK KRISTIYANTO</span></h5>
@@ -28,7 +28,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                            src="../assets/images/no-photo.jpg" alt="...">
+                                            src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h3><span class="badge bg-primary">ADEK KRISTIYANTO</span></h5>
@@ -45,7 +45,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                        src="../assets/images/no-photo.jpg" alt="...">
+                                        src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h5>Faqsi Sarifudin</h5>
@@ -62,7 +62,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                            src="../assets/images/no-photo.jpg" alt="...">
+                                            src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h5 class="">Nickly Sam</h5>
@@ -79,7 +79,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                            src="../assets/images/no-photo.jpg" alt="...">
+                                            src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h3><span class="badge bg-primary">ADEK KRISTIYANTO</span></h5>
@@ -96,7 +96,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                            src="../assets/images/no-photo.jpg" alt="...">
+                                            src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h3><span class="badge bg-primary">ADEK KRISTIYANTO</span></h5>
@@ -113,7 +113,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                        src="../assets/images/no-photo.jpg" alt="...">
+                                        src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h5>Faqsi Sarifudin</h5>
@@ -130,7 +130,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                            src="../assets/images/no-photo.jpg" alt="...">
+                                            src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
                                     </div>
                                     <div class="text-center">
                                         <h5 class="">Nickly Sam</h5>
