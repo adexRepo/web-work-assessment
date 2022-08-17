@@ -12,6 +12,8 @@ require_once __DIR__ . '/../Helper/helper.php';
     use  web\work\assessment\Repository\UserBaseRepository;
     use web\work\assessment\Controller\UserController;
     use web\work\assessment\Repository\SessionRepository;
+    use web\work\assessment\Domain\Session;
+    use web\work\assessment\Service\SessionService;
 
     class UserControllerTest extends TestCase
     {
@@ -129,6 +131,33 @@ require_once __DIR__ . '/../Helper/helper.php';
             $this->userController->postLogin();
 
             $this->expectOutputRegex("[Location: /]");
+        }
+
+        public function testLogout()
+        {
+            $user = new UserBase();
+
+            $user->setUserId("user99");
+            $user->setName("Adek");
+            $user->setGender(1);
+            $user->setPassword(password_hash("rahasia", PASSWORD_BCRYPT));
+
+            $this->userBaseRepository->save($user);
+
+            $session = new Session();
+
+            $session->setSessionId(uniqid());
+            $session->setUserId($user->getUserId());
+            
+            $this->sessionRepository->save($session);
+
+            $_COOKIE[SessionService::$COOKIE_NAME] = $session->getSessionId();
+
+            $this->userController->logout();
+
+            $this->expectOutputRegex("[Location: /]");
+            $this->expectOutputRegex("[WEB-WORK-SESSION: ]");
+
         }
 
     }
