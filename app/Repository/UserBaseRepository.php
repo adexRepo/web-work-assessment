@@ -18,7 +18,7 @@ class UserBaseRepository
         $this->connection = $connection;
     }
 
-    public function save(UserBase $UserBase):UserBase
+    public function save(UserBase $userBase):UserBase
     {
         $query = $this->connection->prepare(
             "INSERT INTO 
@@ -27,12 +27,12 @@ class UserBaseRepository
         );
 
         $query->execute([
-            $UserBase->getUserId(),
-            $UserBase->getName(),
-            $UserBase->getGender(),
-            $UserBase->getPassword()
+            $userBase->getUserId(),
+            $userBase->getName(),
+            $userBase->getGender(),
+            $userBase->getPassword()
         ]);
-        return $UserBase;
+        return $userBase;
     }
 
     public function findById(string $userId): ?UserBase

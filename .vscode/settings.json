@@ -1,3 +1,15 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "tasks": [
+        {
+            "type": "shell",
+            "command": "node build/lib/preLaunch.js",
+            "label": "Ensure Prelaunch Dependencies",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        }
+    ]
 }

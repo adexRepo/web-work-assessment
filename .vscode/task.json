@@ -1,0 +1,12 @@
+{
+    "type": "shell",
+    "command": "node build/lib/preLaunch.js",
+    "label": "Ensure Prelaunch Dependencies",
+    "presentation": {
+        "reveal": "silent",
+        "revealProblems": "onProblem",
+        "showReuseMessage": false,
+        "close": true,
+        "panel": "new"
+    }
+  }
