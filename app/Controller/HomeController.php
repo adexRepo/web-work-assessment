@@ -29,11 +29,11 @@ class HomeController
         $userCurrent = $this->sessionService->currentSession();
         if($userCurrent == null)
         {
-            View::render('Home/index',[
-                "title"=>"Dashboard",
-            ],true);
-        }else {
             View::render('User/login',[
+                "title"=>"Dashboard",
+            ],false);
+        }else {
+            View::render('Home/index',[
                 "title"=>"Dashboard",
                 "name"=>$userCurrent->getName(),
             ],true);
@@ -55,7 +55,7 @@ class HomeController
     }
     function aboutUs(): void
     {
-        View::render('home/aboutUs',["title"=>"About Us"],true);
+        View::render('home/about-us',["title"=>"About Us"],true);
     }
 
 }

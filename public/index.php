@@ -15,12 +15,13 @@ Router::add('GET', '/', HomeController::class, 'index',[]);
 Router::add('GET', '/home/attendance', HomeController::class, 'attendance',[]);
 Router::add('GET', '/home/promotions', HomeController::class, 'promotion',[]);
 Router::add('GET', '/home/performance', HomeController::class, 'performance',[]);
-Router::add('GET', '/home/aboutUs', HomeController::class, 'aboutUs',[]);
+Router::add('GET', '/home/about-us', HomeController::class, 'aboutUs',[]);
 
 // User Controller
 Router::add('GET', '/users/register', UserController::class, 'register',[]);
 Router::add('POST', '/users/register', UserController::class, 'postRegister',[]);
 Router::add('GET', '/users/login', UserController::class, 'login',[]);
 Router::add('POST', '/users/login', UserController::class, 'postLogin',[]);
+Router::add('GET', '/users/logout', UserController::class, 'logout',[]);
 
 Router::run();;

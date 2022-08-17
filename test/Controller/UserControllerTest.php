@@ -3,22 +3,29 @@
 
 namespace web\work\assessment\Controller;
 
+require_once __DIR__ . '/../Helper/helper.php';
+
+
     use PHPUnit\Framework\TestCase;
     use  web\work\assessment\Config\Database;
     use  web\work\assessment\Domain\UserBase;
     use  web\work\assessment\Repository\UserBaseRepository;
     use web\work\assessment\Controller\UserController;
+    use web\work\assessment\Repository\SessionRepository;
 
     class UserControllerTest extends TestCase
     {
 
         private UserController $userController;
         private UserBaseRepository $userBaseRepository;
+        private SessionRepository $sessionRepository;
 
         protected function setUp(): void
         {
             $this->userController = new UserController();
             $this->userBaseRepository = new UserBaseRepository(Database::getConnection());
+            $this->sessionRepository = new SessionRepository(Database::getConnection());
+            $this->sessionRepository->deleteAll();
             $this->userBaseRepository->deleteAll();
         }
 
@@ -67,13 +74,12 @@ namespace web\work\assessment\Controller;
         public function testPostRegisterDuplicate()
         {
             $user = new UserBase();
-            $user->userId = "user1";
-            $user->name = "Eko";
-            $user->gender = 1;
-            $user->password = "Trst2343rf!@#";
+            $user->setUserId("user1");
+            $user->setName('Adek Kristiyanto');
+            $user->setGender(1);
+            $user->setPassword(password_hash('rahasia', PASSWORD_BCRYPT));
             
-
-            $this->UserBaseRepository->save($user);
+            $this->userBaseRepository->save($user);
 
             $_POST['userId'] = 'user1';
             $_POST['name'] = 'Eko';
