@@ -12,33 +12,42 @@ class AttendanceTraceRepository
         $this->connection = $connection;
     }
 
-    public function checkAttendaceToday(string $attendanceId) :?AttendanceTrace
+    public function checkAttendaceToday(string $userId) : ?AttendanceTrace
     {
         $date = date("Ymd");
 
         $query = $this->connection->prepare(
-            "SELECT * FROM attendance_trace where id = ? and date = ?"
+            "SELECT * FROM attendance_trace where user_id = ? and date = ?"
         );
 
-        $query->execute([$attendanceId, $date]);
+        $query->execute([$userId, $date]);
         $outputQuery = $query->fetch();
 
         if($outputQuery === false) return null;
 
-        $query->closeCursor();
-        return $outputQuery;
+        try {
+            $attendanceTrace = new AttendanceTrace();
+            $attendanceTrace->setAttendanceId($outputQuery['attendance_id']);
+            $attendanceTrace->setDate($outputQuery['date']);
+            $attendanceTrace->setUserId($outputQuery['user_id']);
+            $attendanceTrace->setClockIn($outputQuery['clock_in']);
+            $attendanceTrace->setStatus($outputQuery['status']);
+            return $attendanceTrace;
+        } finally {
+            $query->closeCursor();
+        }
     }
 
     public function save(AttendanceTrace $attendaceTrace):AttendanceTrace
     {
         $query = $this->connection->prepare(
             "INSERT INTO 
-                attendance_trace(id, date, user_id, clock_in, status)
+                attendance_trace(attendance_id, date, user_id, clock_in, status)
                 VALUES(?, ?, ?, ?, ?)"
         );
 
         $query->execute([
-            $attendaceTrace->getAttendanceTraceId(),
+            $attendaceTrace->getAttendanceId(),
             $attendaceTrace->getDate(),
             $attendaceTrace->getUserId(),
             $attendaceTrace->getClockIn(),

@@ -186,7 +186,7 @@
                                         <div class="col-lg-12">
                                             <div class="text-xs h5 font-weight-bold text-primary text-uppercase mb-1">
                                                 Attendance Today</div><hr/>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">11-08-2022 07:59:42</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $model['clockIn']?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>

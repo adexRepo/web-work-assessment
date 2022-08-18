@@ -13,11 +13,12 @@ use web\work\assessment\Middleware\MustNotLoginMiddleware;
 Database::getConnection('prod');
 
 // Home Controller
-Router::add('GET', '/'                , HomeController::class, 'index'      ,[]);
-Router::add('GET', '/home/attendance' , HomeController::class, 'attendance' ,[]);
-Router::add('GET', '/home/promotions' , HomeController::class, 'promotion'  ,[]);
-Router::add('GET', '/home/performance', HomeController::class, 'performance',[]);
-Router::add('GET', '/home/about-us'   , HomeController::class, 'aboutUs'    ,[]);
+Router::add('GET', '/'                , HomeController::class, 'index'  ,[MustLoginMiddleware::class]);
+Router::add('GET', '/clockin'        , HomeController::class, 'clockin' ,[MustLoginMiddleware::class]);
+Router::add('GET', '/home/attendance' , HomeController::class, 'attendance' ,[MustLoginMiddleware::class]);
+Router::add('GET', '/home/promotions' , HomeController::class, 'promotion'  ,[MustLoginMiddleware::class]);
+Router::add('GET', '/home/performance', HomeController::class, 'performance',[MustLoginMiddleware::class]);
+Router::add('GET', '/home/about-us'   , HomeController::class, 'aboutUs'    ,[MustLoginMiddleware::class]);
 
 // User Controller
 Router::add('GET' , '/users/register', UserController::class, 'register'    ,[MustNotLoginMiddleware::class]);

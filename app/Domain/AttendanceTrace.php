@@ -6,10 +6,10 @@ use DateTime;
 
 class AttendanceTrace
 {
-    private   string      $attendanceTraceId         ;
+    private   string      $attendanceId         ;
     private   string      $date     ;
     private   string      $userId     ;
-    private   int    $clockIn    ;
+    private   string    $clockIn    ;
     private   int         $status     ;
 
 	/**
@@ -45,21 +45,6 @@ class AttendanceTrace
 	/**
 	 * @return string
 	 */
-	function getAttendanceTraceId(): string {
-		return $this->attendanceTraceId;
-	}
-	
-	/**
-	 * @param string $attendanceTraceId 
-	 * @return AttendanceTrace
-	 */
-	function setAttendanceTraceId(string $attendanceTraceId): self {
-		$this->attendanceTraceId = $attendanceTraceId;
-		return $this;
-	}
-	/**
-	 * @return string
-	 */
 	function getDate(): string {
 		return $this->date;
 	}
@@ -73,18 +58,33 @@ class AttendanceTrace
 		return $this;
 	}
 	/**
-	 * @return int
+	 * @return string
 	 */
-	function getClockIn(): int {
+	function getClockIn(): string {
 		return $this->clockIn;
 	}
 	
 	/**
-	 * @param int $clockIn 
+	 * @param string $clockIn 
 	 * @return AttendanceTrace
 	 */
-	function setClockIn(int $clockIn): self {
+	function setClockIn(string $clockIn): self {
 		$this->clockIn = $clockIn;
+		return $this;
+	}
+	/**
+	 * @return string
+	 */
+	function getAttendanceId(): string {
+		return $this->attendanceId;
+	}
+	
+	/**
+	 * @param string $attendanceId 
+	 * @return AttendanceTrace
+	 */
+	function setAttendanceId(string $attendanceId): self {
+		$this->attendanceId = $attendanceId;
 		return $this;
 	}
 }
