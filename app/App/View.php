@@ -8,8 +8,18 @@ class View
     {
         if($isLogin){
             require __DIR__ . '/../View/components/header.php';
+            if(isset($model['attendance'])){
+                if($model['attendance'])
+                echo ("<script language='javascript'>
+                        $(document).ready(function() {
+                            $('#attendance').modal({backdrop: 'static', keyboard: false})  
+                            $('#attendance').modal('show');  
+                        })
+                        </script>");
+            }
             require __DIR__ . '/../View/' . $path . '.php';
             require __DIR__ . '/../View/components/footer.php';
+
         }else{
             require __DIR__ . '/../View/' . $path . '.php';
 
