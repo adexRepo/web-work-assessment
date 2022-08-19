@@ -22,9 +22,9 @@ class UserController
         // setUp for get UserService
         $connection = Database::getConnection(); // alat koneksi
         $userBaseRepository = new UserBaseRepository($connection); // dikoneksiin ke table user_base
-        $sessionRepository = new SessionRepository($connection);
-
         $this->userService = new UserService($userBaseRepository); // service + repository
+
+        $sessionRepository = new SessionRepository($connection);
         $this->sessionService =  new SessionService($sessionRepository, $userBaseRepository);
     }
 
@@ -71,7 +71,6 @@ class UserController
             // execute service
             $response = $this->userService->login($request);
             $response = $response->getUser();
-            
             $this->sessionService->create($response->getUserId());
 
             View::redirect('/');

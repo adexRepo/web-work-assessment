@@ -129,7 +129,6 @@
                             Create Report Today
                         </button>
                     </div>
-
                     <div class="modal fade" id="modalSendReport" tabindex="-1" aria-labelledby="modalSendReportLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
@@ -138,41 +137,40 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="form-group p-3" most="post" action="/">
+                                <form class="form-group p-3" method="post" action="/popup/send-report">
                                     <div class="form-floating mb-3">
                                         <input name="name" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" disabled id="name" placeholder="Username">
-                                        <label for="name">Name</label>
+                                        <label for="name"><?= $model['name']?></label>
                                     </div>
-                                    <div class="form-floating mb-3">
+                                    <!-- <div class="form-floating mb-3">
                                         <input name="branch" type="text" class="form-control shadow-sm mb-2 rounded h-10 bg-light bg-gradient"  disabled id="branch" placeholder="Username">
                                         <label for="branch">Branch</label>
-                                    </div>
+                                    </div> -->
                                     <div class="form-floating mb-3">
-                                        <input name="date" type="date" class="form-control shadow-sm mb-2 rounded h-10 bg-light bg-gradient"  disabled id="date" placeholder="Username">
+                                        <input name="date" type="date" class="form-control shadow-sm mb-2 rounded h-10 bg-light bg-gradient"  id="date" placeholder="Username">
                                         <label for="date">Date</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="totPackage" type="text" class="form-control shadow-sm mb-2 bg-body rounded h-10" id="totPackage" placeholder="Username">
+                                        <input name="totPackage" type="number" class="form-control shadow-sm mb-2 bg-body rounded h-10" id="totPackage" placeholder="Username">
                                         <label for="totPackage">Total Package Today</label>
                                     </div>
                                     <div class="mb-3">
                                         <select name="remarkCode" id="remarkCode" class="form-select p-3 shadow-sm mb-2 bg-body rounded h-10" aria-label="Default select example">
-                                            <option selected value="0" >Choose Note Category</option>
-                                            <option  value="1">Info</option>
-                                            <option  value="2">Tips</option>
+                                            <option selected value="0" >Choose Remark Category</option>
+                                            <option  value="1">Just Info</option>
+                                            <option  value="2">Tips and Trick</option>
                                             <option  value="3">Problem</option>
                                         </select>
                                     </div>
                                     <div class="form-floating">
-                                        <textarea name="remark" class="form-control shadow-sm mb-2 bg-body rounded" id="remark" rows="1" style="height:100px" ></textarea>
+                                        <textarea name="remark" class="form-control shadow-sm mb-2 bg-body rounded" id="remark" placeholder="Remark" rows="1" style="height:100px" ></textarea>
+                                        <label for="remark">Remark</label>
+                                    </div>
+                                    <div class="modal-footer text-center align-items-center">
+                                        <button class="w-100 btn btn-md btn-primary shadow-md" type="submit">Send Report</button>
+                                        <button class="w-100 btn btn-md btn-secondary shadow-md" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"  data-bs-dismiss="modal"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>Close</a>
-                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>Send Report</a>
                             </div>
                           </div>
                         </div>
@@ -206,12 +204,12 @@
                                             </div><hr/>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $model['persentationPackage']?>%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: 50%" aria-valuenow="<?= $model['persentationPackage']?>" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -234,7 +232,7 @@
                                             <div class="text-xs h5 font-weight-bold text-warning text-uppercase mb-1">
                                                 Total Package</div>
                                                 <hr/>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $model['totalPackage']?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -252,7 +250,7 @@
                                         <div class="col-lg-12">
                                             <div class="text-xs h5 font-weight-bold text-success text-uppercase mb-1">
                                                 Commission</div><hr/>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 215,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <?= $model['commission']?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

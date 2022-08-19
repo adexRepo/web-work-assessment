@@ -22,11 +22,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="attendance">Attendance Before Work!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center p-3">
                 <p>"Selamat pagi. Semoga hari ini membawa kegembiraan dari harapan kemarin."<p>
-                <a href="/clockin" class="d-none d-sm-inline-block btn btn-xl btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Clock In</a>
+                <a href="/popup/clockin" class="d-none d-sm-inline-block btn btn-xl btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Clock In</a>
                 <a href="/users/logout" class="d-none d-sm-inline-block btn btn-xl btn-danger shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Logout</a>
             </div>
         </div>

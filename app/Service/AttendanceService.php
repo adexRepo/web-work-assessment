@@ -17,10 +17,15 @@ class AttendanceService
         $this->attendanceRepo = $attendanceRepo;
     }
 
-    public function create(string $userId)
-    {
+    public function dateToday(){
         $current = new DateTime();
         $current->setTimeZone(new DateTimeZone('Asia/Jakarta'));
+        return $current;
+    }
+
+    public function create(string $userId)
+    {
+        $current = $this->dateToday();
         $date = $current->format('Ymd');
         $dueTime = DateTime::createFromFormat('H:i:s', '08:00:00');
         $earlyTime = DateTime::createFromFormat('H:i:s', '07:55:00');
