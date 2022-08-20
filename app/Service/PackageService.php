@@ -35,24 +35,25 @@ class PackageService
             
             $reportHis = $this->packageRepo->findByUserIdAndDate($req->getUserId(), $req->getDate());
             $reportPackage = new PackageSendedTrace();
-            if($reportHis != null){
-                // update
-                $reportPackage->setPackageId($reportHis->getPackageId());
-                $reportPackage->setTotalPackage($req->getTotalPackage());
-                $reportPackage->setCodeRemark($req->getCodeRemark());
-                $reportPackage->setRemark($req->getRemark());
-
-                $this->packageRepo->update($reportPackage);
-            }else{
+            if($reportHis == false){
                 // save
-                $reportPackage->setPackageId(uniqid());
+                $unique = time().'-'.uniqid(true);
+
+                $reportPackage->setPackageId($unique);
                 $reportPackage->setUserId($req->getUserId());
                 $reportPackage->setDate($req->getDate());
                 $reportPackage->setTotalPackage($req->getTotalPackage());
                 $reportPackage->setCodeRemark($req->getCodeRemark());
                 $reportPackage->setRemark($req->getRemark());
-
                 $this->packageRepo->save($reportPackage);
+                
+            }else{
+                // update
+                $reportPackage->setPackageId($reportHis->getPackageId());
+                $reportPackage->setTotalPackage($req->getTotalPackage());
+                $reportPackage->setCodeRemark($req->getCodeRemark());
+                $reportPackage->setRemark($req->getRemark());
+                $this->packageRepo->update($reportPackage);
             }
 
             $res = new SendReportPackageResponse();
@@ -82,7 +83,6 @@ class PackageService
         ){ 
             throw new ValidationException("All Input can not blank", 0);
          }
-
          return true;
     }
 

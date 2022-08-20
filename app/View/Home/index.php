@@ -200,7 +200,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-lg-12">
-                                            <div class="text-xs h5 font-weight-bold text-info text-uppercase mb-1">Sended Package
+                                            <div class="text-xs h5 font-weight-bold text-info text-uppercase mb-1">Sent Package Month
                                             </div><hr/>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -209,7 +209,7 @@
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="<?= $model['persentationPackage']?>" aria-valuemin="0"
+                                                            style="width: <?= $model['persentationPackage']?>%" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -230,9 +230,9 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-lg-12">
                                             <div class="text-xs h5 font-weight-bold text-warning text-uppercase mb-1">
-                                                Total Package</div>
+                                                Total Package Month</div>
                                                 <hr/>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $model['totalPackage']?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $model['totalPackage']?> Package You Sent</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -249,7 +249,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-lg-12">
                                             <div class="text-xs h5 font-weight-bold text-success text-uppercase mb-1">
-                                                Commission</div><hr/>
+                                                Commission Month</div><hr/>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <?= $model['commission']?></div>
                                         </div>
                                         <div class="col-auto">

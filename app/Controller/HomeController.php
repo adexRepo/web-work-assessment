@@ -14,12 +14,16 @@ use web\work\assessment\Repository\UserBaseRepository;
 use web\work\assessment\Model\SendReportPackageRequest;
 use web\work\assessment\Repository\AttendanceTraceRepository;
 use web\work\assessment\Repository\PackageSendedTraceRepository;
+use web\work\assessment\Model\DashboardRequest;
+use web\work\assessment\Module\Dates;
+use web\work\assessment\Service\DashboardService;
 
 class HomeController
 {
     private SessionService $sessionService;
     private AttendanceService $attendanceService;
     private PackageService $packageService;
+    private DashboardService $dashboardService;
 
     public function __construct()
     {
@@ -33,72 +37,42 @@ class HomeController
         $this->attendanceService = new AttendanceService($attendanceRepository);
         $this->sessionService = new SessionService($sessionRepository, $userBaseRepository);
         $this->packageService = new PackageService($packageRepository);
-        
+        $this->dashboardService = new DashboardService($attendanceRepository, $packageRepository);
     }
 
-    function index(): void
+    public function index()
     {
+        $dateNow = Dates::dateNowFormatYmd();
         $userCurrent = $this->sessionService->currentSession();
-        $userAttendanceCurrent = $this->attendanceService->currentAttendance($userCurrent->getUserId());
-        $showModalAttendance = $userAttendanceCurrent == null;
-        $clockin = $showModalAttendance ? "-" : $userAttendanceCurrent->getClockIn();
+        $request = new DashboardRequest();
+        $request->setUserId($userCurrent->getUserId());
+        $request->setDate($dateNow);
 
-        if($userCurrent == null)
-        {
-            View::render('User/login',[
-                "title"=>"Dashboard",
-            ],false);
-
-        }else {
-            View::render('Home/index',[
-                "title"=>"Dashboard",
-                "userId"=>$userCurrent->getUserId(),
-                "name"=>$userCurrent->getName(),
-                "clockIn"=>$clockin,
-                "persentationPackage"=> 0,
-                "totalPackage"=>0,
-                "commission"=>0,
-                "attendance"=>$showModalAttendance,
-            ],true);
-        }
+        $response = $this->dashboardService->inquiryDataDashboard($request);
+        View::render('Home/index',[
+            "title"=>"Dashboard",
+            "userId"=>$userCurrent->getUserId(),
+            "name"=>$userCurrent->getName(),
+            "clockIn"=>$response->getClockIn(),
+            "persentationPackage"=> $response->getPersentationPackage(),
+            "totalPackage"=>$response->getTotalPackage(),
+            "commission"=>$response->getCommission(),
+            "attendance"=>$response->getAttendance(),
+        ],true);
     }
 
     public function clockin(){
         $userCurrent = $this->sessionService->currentSession();
-        $userAttendanceCurrent = $this->attendanceService->create($userCurrent->getUserId());
 
-        View::render('Home/index',[
-            "title"=>"Dashboard",
-            "userId"=>$userCurrent->getUserId(),
-            "clockIn"=>$userAttendanceCurrent->getClockIn(),
-            "persentationPackage"=> 0,
-            "totalPackage"=>0,
-            "commission"=>0,
-            "attendance"=>false,
-        ],true);
-    }
+        try {
+            $this->attendanceService->create($userCurrent->getUserId());
+            View::redirect('/');
+        } catch (\Throwable $th) {
+            //throw $th;
+            View::redirect('/');
+            echo "<script>alert($th)</script>";
+        }
 
-    public function callBackHome()
-    {
-        $userCurrent = $this->sessionService->currentSession();
-        $userAttendanceCurrent = $this->attendanceService->currentAttendance($userCurrent->getUserId());
-
-        View::render('Home/index',[
-            "title"=>"Dashboard",
-            "userId"=>$userCurrent->getUserId(),
-            "clockIn"=>$userAttendanceCurrent->getClockIn(),
-            "persentationPackage"=> 0,
-            "totalPackage"=>0,
-            "commission"=>0,
-            "attendance"=>false,
-        ],true);
-    }
-
-    public function sendReport()
-    {
-        // $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        // var_dump($actual_link);
-        $this->callBackHome();
     }
 
     public function postSendReport()
@@ -116,19 +90,15 @@ class HomeController
         try {
             $this->packageService->sendReport($req);
 
-            $this->callBackHome();
+            View::redirect('/');
 
         } catch (ValidationException $e) {
             //throw $th;
-            $this->callBackHome();
+            View::redirect('/');
         }
 
     }
 
-    function attendance(): void
-    {
-        View::render('home/attendance',["title"=>"Attendance"],true);
-    }
     function performance(): void
     {
         View::render('home/performance',["title"=>"Performance"],true);

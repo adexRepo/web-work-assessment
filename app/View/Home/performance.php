@@ -4,10 +4,6 @@
                 <div class="p-md-4 p-4 border rounded-3">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?= $model['title']  ?></h1>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modalSendReport">
-                            Download Report Performance
-                        </button>
                     </div>
                     <div class="d-sm-flex table-responsive section" style="border-radius: 1rem; overflow-y: scroll; max-height: 500px;">
                         <table class="table table-striped table-hover table-bordered align-middle">

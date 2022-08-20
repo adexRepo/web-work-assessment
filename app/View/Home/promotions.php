@@ -4,10 +4,6 @@
                 <div class="p-md-4 p-4 border rounded-3">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800"><?= $model['title']  ?></h1>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modalSendReport">
-                            Download Report Promotion
-                        </button>
                     </div>
                     <div class="col-xl mb-2">
                         <div class="card border-left-primary shadow h-100 py-2">
