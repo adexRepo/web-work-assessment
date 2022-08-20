@@ -6,6 +6,8 @@ function getDatabaseConfig():array
 
     // environment variables
     // for now test same with prod .. mager buat db baru dan table2 baru nya
+    // php -S localhost:8088
+    // http://localhost:8088
 
     // test / dev / uat
     $test = [

@@ -20,3 +20,11 @@ $current = new DateTime();
     {
         echo 'yaa saat ini lebih dari jam masuk';
     }
+
+
+    echo '$$$$$$$$$$$$$$$$$$$$$$$$$$' . PHP_EOL;
+$dates = '2022-08-24';
+$time = date('Ymd',strtotime($dates));
+// $datess = date('Ymd', $dates);
+
+var_dump($time);

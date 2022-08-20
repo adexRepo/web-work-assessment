@@ -14,17 +14,20 @@ Database::getConnection('prod');
 
 // Home Controller
 Router::add('GET', '/'                , HomeController::class, 'index'  ,[MustLoginMiddleware::class]);
-Router::add('GET', '/clockin'        , HomeController::class, 'clockin' ,[MustLoginMiddleware::class]);
+Router::add('GET', '/popup/clockin'      , HomeController::class, 'clockIn' ,[MustLoginMiddleware::class]);
 Router::add('GET', '/home/attendance' , HomeController::class, 'attendance' ,[MustLoginMiddleware::class]);
 Router::add('GET', '/home/promotions' , HomeController::class, 'promotion'  ,[MustLoginMiddleware::class]);
 Router::add('GET', '/home/performance', HomeController::class, 'performance',[MustLoginMiddleware::class]);
 Router::add('GET', '/home/about-us'   , HomeController::class, 'aboutUs'    ,[MustLoginMiddleware::class]);
 
+Router::add('POST', '/popup/send-report' , HomeController::class, 'postSendReport' ,[MustLoginMiddleware::class]);
+
+
 // User Controller
+Router::add('GET' , '/users/logout'  , UserController::class, 'logout'      ,[MustLoginMiddleware::class]);
 Router::add('GET' , '/users/register', UserController::class, 'register'    ,[MustNotLoginMiddleware::class]);
 Router::add('POST', '/users/register', UserController::class, 'postRegister',[MustNotLoginMiddleware::class]);
 Router::add('GET' , '/users/login'   , UserController::class, 'login'       ,[MustNotLoginMiddleware::class]);
 Router::add('POST', '/users/login'   , UserController::class, 'postLogin'   ,[MustNotLoginMiddleware::class]);
-Router::add('GET' , '/users/logout'  , UserController::class, 'logout'      ,[MustLoginMiddleware::class]);
 
 Router::run();;

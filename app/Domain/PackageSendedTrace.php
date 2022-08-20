@@ -7,7 +7,7 @@ use DateTime;
 class PackageSendedTrace
 {
 
-    private   string      $id;
+    private   string      $packageId;
     private string $userId;
     private string $date;
     private int $totalPackage;
@@ -19,18 +19,19 @@ class PackageSendedTrace
 	/**
 	 * @return string
 	 */
-	function getId(): string {
-		return $this->id;
+	function getPackageId(): string {
+		return $this->packageId;
 	}
 	
 	/**
-	 * @param string $id 
+	 * @param string $packageId 
 	 * @return PackageSendedTrace
 	 */
-	function setId(string $id): self {
-		$this->id = $id;
+	function setPackageId(string $packageId): self {
+		$this->packageId = $packageId;
 		return $this;
 	}
+
 	/**
 	 * @return string
 	 */
