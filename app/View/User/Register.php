@@ -43,9 +43,9 @@
                                 </div>
                                 <div class="mb-3">
                                     <select name="gender" id="gender" value="<?= $_POST['gender'] ?? ''?>"  required class="form-select" aria-label="Default select example">
-                                        <option selected disabled value="" >Choose Gender</option>
-                                        <option  value="0">Female</option>
-                                        <option  value="1">Male</option>
+                                        <option selected disabled value="0" >Choose Gender</option>
+                                        <option  value="1">Female</option>
+                                        <option  value="2">Male</option>
                                       </select>
                                 </div>
                                 <div class="form-floating mb-3">

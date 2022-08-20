@@ -8,7 +8,6 @@ class SendReportPackageResponse
 {
     private PackageSendedTrace $historyReport;
 
-
     /**
      * Get the value of historyReport
      */ 

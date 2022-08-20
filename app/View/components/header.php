@@ -54,7 +54,7 @@
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/" class="nav-link px-2 link-secondary">Dashboard</a></li>
-                    <li><a href="/home/attendance" class="nav-link px-2 link-dark">Attendance</a></li>
+                    <li><a href="/attend/attendance" class="nav-link px-2 link-dark">Attendance</a></li>
                     <li><a href="/home/performance" class="nav-link px-2 link-dark">Performance</a></li>
                     <li><a href="/home/promotions" class="nav-link px-2 link-dark">Promotions</a></li>
                     <li><a href="/home/about-us" class="nav-link px-2 link-dark">About Us</a></li>
