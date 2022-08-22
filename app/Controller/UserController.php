@@ -46,9 +46,7 @@ class UserController
         try {
             // execute service
             $this->userService->register($request);
-
             View::redirect('/users/login');
-            
         } catch (ValidationException $e) {
             //code...
             View::render('User/register' ,[
@@ -72,6 +70,8 @@ class UserController
             $response = $this->userService->login($request);
             $response = $response->getUser();
             $this->sessionService->create($response->getUserId());
+            $this->userService->addInCookieUser($response->getUserId());
+
 
             View::redirect('/');
         } catch (ValidationException $e) {

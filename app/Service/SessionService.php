@@ -49,7 +49,8 @@ class SessionService
 
         setcookie(self::$COOKIE_NAME, '', time()-3600, '/'); 
         // $_COOKIE[self::$COOKIE_NAME] = null;
-
+        
+        setcookie('USER_INFO', '', time()-3600, '/'); 
     }
 
     public function currentSession(): ?UserBase

@@ -23,7 +23,6 @@ class DashboardService
     {
         $this->validationRequestInquiry($req);
 
-
         try{
             Database::beginTransaction();
             $month = date('Ym', strtotime($req->getDate())).'%';

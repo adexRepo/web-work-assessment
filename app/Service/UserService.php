@@ -108,4 +108,33 @@ class UserService
         return true;
     }
 
+
+    public function addInCookieUser(string $userId)
+    {
+        $arrOutput = $this->userBaseRepository->findById($userId);
+
+        $arr = [];
+        $arr['userId'      ] = $arrOutput->getUserId       ();
+        $arr['name'        ] = $arrOutput->getName       ();
+        $arr['gender'      ] = $arrOutput->getGender         ();
+        $arr['phone'       ] = $arrOutput->getPhone       ();
+        $arr['email'       ] = $arrOutput->getEmail       ();
+        $arr['password'    ] = $arrOutput->getPassword        ();
+        $arr['status'      ] = $arrOutput->getStatus        ();
+        $arr['contract'    ] = $arrOutput->getContract     ();
+        $arr['dateRegist'  ] = $arrOutput->getDateRegist         ();
+        $arr['dateUpdated' ] = $arrOutput->getDateUpdated  ();
+        $arr['authUser'    ] = $arrOutput->getAuthUser     ();
+        $arr['team'        ] = $arrOutput->getTeam      ();
+        $arr['departement' ] = $arrOutput->getDepartement ();
+        $arr['branchId'    ] = $arrOutput->getBranchId   ();
+        $arr['lastContract'] = $arrOutput->getLastContract  ();
+        $arr['remark'      ] = $arrOutput->getRemark       ();
+
+        $serial = (serialize($arr));
+
+        setcookie('USER_INFO', base64_encode($serial), time()+3600,'/');
+        // $data = unserialize(base64_decode($_COOKIE['USER_INFO']));
+    }
+
 }
