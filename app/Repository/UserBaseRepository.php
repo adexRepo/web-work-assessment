@@ -45,12 +45,25 @@ class UserBaseRepository
         if($outputQuery === false) return null;
 
         try {
+
             $user = new UserBase();
-            $user->setUserId($outputQuery['user_id']);
-            $user->setName($outputQuery['name']);
-            $user->setGender($outputQuery['gender']);
-            $user->setPassword($outputQuery['password']);
-    
+            $user->setUserId      ($outputQuery['user_id'      ]);
+            $user->setName        ($outputQuery['name'         ]);
+            $user->setGender      ($outputQuery['gender'       ]);
+            $user->setStatus      ($outputQuery['status'       ] ?? 0);
+            $user->setPassword ($outputQuery['password']);
+            $user->setPhone       ($outputQuery['phone'        ] ?? 0);
+            $user->setEmail       ($outputQuery['email'        ] ?? '');
+            $user->setAuthUser    ($outputQuery['auth_user'    ] ?? 0);
+            $user->setTeam        ($outputQuery['team'         ] ?? '');
+            $user->setDepartement ($outputQuery['departement'  ] ?? '');
+            $user->setBranchId    ($outputQuery['branch_id'    ] ?? '');
+            $user->setContract    ($outputQuery['contract'     ] ?? 0);
+            $user->setLastContract($outputQuery['last_contract'] ?? '');
+            $user->setDateRegist  ($outputQuery['date_regist'  ] ?? '');
+            $user->setDateUpdated ($outputQuery['date_update'  ] ?? '');
+            $user->setRemark      ($outputQuery['remark'       ] ?? '');
+
             return $user;
         }finally{
             $query->closeCursor();

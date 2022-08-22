@@ -10,19 +10,21 @@ class UserBase
     private   string      $userId       ;
     private   string      $name         ;
     private   int         $gender       ;
-    private   string      $password     ;
-
+	
     // NOTE when registered by spv
-    private   int        $status        ;
-    private   int        $contract      ;
-    private   DateTime   $dateRegist    ;
-    private   DateTime   $dateUpdated   ;
-    private   int     $authUser      ;
-    private   string     $team          ;
-    private   string     $departement   ;
-    private   string     $branch_id     ;
-    private   string     $lastContract  ;
-    private   string     $remark        ;
+    private   int         $phone         ;
+    private   string      $email         ;
+    private   string      $password      ;
+    private   int         $status        ;
+    private   int         $contract      ;
+    private   string      $dateRegist    ;
+    private   string      $dateUpdated   ;
+    private   int         $authUser      ;
+    private   string      $team          ;
+    private   string      $departement   ;
+    private   string      $branchId      ;
+    private   string      $lastContract  ;
+    private   string      $remark        ;
 
     // NOTE GETTER SETTER
 	/**
@@ -131,21 +133,6 @@ class UserBase
 		return $this;
 	}
 	/**
-	 * @return string
-	 */
-	function getBranch_id(): string {
-		return $this->branch_id;
-	}
-	
-	/**
-	 * @param string $branch_id 
-	 * @return UserBase
-	 */
-	function setBranch_id(string $branch_id): self {
-		$this->branch_id = $branch_id;
-		return $this;
-	}
-	/**
 	 * @return int
 	 */
 	function getContract(): int {
@@ -173,36 +160,6 @@ class UserBase
 	 */
 	function setLastContract(string $lastContract): self {
 		$this->lastContract = $lastContract;
-		return $this;
-	}
-	/**
-	 * @return DateTime
-	 */
-	function getDateRegist(): DateTime {
-		return $this->dateRegist;
-	}
-	
-	/**
-	 * @param DateTime $dateRegist 
-	 * @return UserBase
-	 */
-	function setDateRegist(DateTime $dateRegist): self {
-		$this->dateRegist = $dateRegist;
-		return $this;
-	}
-	/**
-	 * @return DateTime
-	 */
-	function getDateUpdated(): DateTime {
-		return $this->dateUpdated;
-	}
-	
-	/**
-	 * @param DateTime $dateUpdated 
-	 * @return UserBase
-	 */
-	function setDateUpdated(DateTime $dateUpdated): self {
-		$this->dateUpdated = $dateUpdated;
 		return $this;
 	}
 	/**
@@ -235,4 +192,124 @@ class UserBase
 		$this->authUser = $authUser;
 		return $this;
 	}
+
+    /**
+     * Get the value of phone
+     *
+     * @return int
+     */
+    public function getPhone(): int
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set the value of phone
+     *
+     * @param int $phone
+     *
+     * @return self
+     */
+    public function setPhone(int $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     *
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @param string $email
+     *
+     * @return self
+     */
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateRegist
+     *
+     * @return string
+     */
+    public function getDateRegist(): string
+    {
+        return $this->dateRegist;
+    }
+
+    /**
+     * Set the value of dateRegist
+     *
+     * @param string $dateRegist
+     *
+     * @return self
+     */
+    public function setDateRegist(string $dateRegist): self
+    {
+        $this->dateRegist = $dateRegist;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of branchId
+     *
+     * @return string
+     */
+    public function getBranchId(): string
+    {
+        return $this->branchId;
+    }
+
+    /**
+     * Set the value of branchId
+     *
+     * @param string $branchId
+     *
+     * @return self
+     */
+    public function setBranchId(string $branchId): self
+    {
+        $this->branchId = $branchId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateUpdated
+     *
+     * @return string
+     */
+    public function getDateUpdated(): string
+    {
+        return $this->dateUpdated;
+    }
+
+    /**
+     * Set the value of dateUpdated
+     *
+     * @param string $dateUpdated
+     *
+     * @return self
+     */
+    public function setDateUpdated(string $dateUpdated): self
+    {
+        $this->dateUpdated = $dateUpdated;
+
+        return $this;
+    }
 }

@@ -113,4 +113,38 @@ class PackageSendedTraceRepository
 
         return $outputQuery[0];
     }
+
+    public function findByUserIdAndMonth(string $userId, string $monthNow) :?array
+    {
+        $query = $this->connection->prepare(
+            "SELECT
+                    a.user_id ,
+                    b.name,
+                    a.`date` ,
+                    a.total_package,
+                    (select value from
+                        code_base
+                    where type = 'CTGREMARK'
+                    and code = a.code_remark) as remark_type,
+                    a.remark 
+                from
+                    package_sended_trace a
+                left join user_base b on
+                    a.user_id = b.user_id
+                where
+                    a.`date` like ?
+                    and a.user_id = ?
+                order by a.`date`"
+            );
+
+        $query->execute([
+            $monthNow,
+            $userId
+        ]);
+        $outputQuery = $query->fetchAll();
+        if($outputQuery === false) return null;
+
+        $query->closeCursor();
+        return $outputQuery;
+    }
 }

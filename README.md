@@ -62,3 +62,13 @@
 * or open https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
 copy paste content in architecture.wsd to that demo server
 
+# schedule
+1. update info user (senin)
+2. new popup for add information in benefit.rule , settings (senin)
+3. show data benefit_rule to Promotions (selasa)
+4. finishing about - us (selasa)
+5. fix dashboard (rabu)
+6. add function download file (rabu)
+7. add authority for settings (kamis)
+8. hosting (kamis)
+9. share to pak akbar

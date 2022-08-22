@@ -81,4 +81,5 @@ class AttendanceTraceRepository
         $query->closeCursor();
         return $outputQuery;
     }
+
 }

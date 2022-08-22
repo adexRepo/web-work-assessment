@@ -8,7 +8,9 @@ use web\work\assessment\Config\Database;
 use web\work\assessment\Domain\PackageSendedTrace;
 use web\work\assessment\Exception\ValidationException;
 use web\work\assessment\Model\SendReportPackageRequest;
+use web\work\assessment\Model\PerformanceHistoryRequest;
 use web\work\assessment\Model\SendReportPackageResponse;
+use web\work\assessment\Model\PerformanceHistoryResponse;
 use web\work\assessment\Repository\PackageSendedTraceRepository;
 
 class PackageService
@@ -28,7 +30,7 @@ class PackageService
 
     public function sendReport(SendReportPackageRequest $req):SendReportPackageResponse
     {
-        $this->validationPackage($req);
+        $this->validationPackageSent($req);
 
         try {
             Database::beginTransaction();
@@ -69,7 +71,7 @@ class PackageService
 
     }
 
-    public function validationPackage(SendReportPackageRequest $req):bool
+    public function validationPackageSent(SendReportPackageRequest $req):bool
     {
         if(
             $req->getUserId() == null ||
@@ -86,4 +88,42 @@ class PackageService
          return true;
     }
 
+    public function inquiryPackageHistory(PerformanceHistoryRequest  $req):PerformanceHistoryResponse
+    {
+        $this->validationPerformanceHistory($req);
+
+        try {
+            Database::beginTransaction();
+            $userId = $req->getUserId();
+            $monthNow = $req->getMonth();
+
+            $arrOutput = $this->packageRepo->findByUserIdAndMonth($userId, $monthNow);
+
+            $res = new PerformanceHistoryResponse();
+            $res->setPerformanceHistory($arrOutput);
+
+            return $res;
+            Database::commit();
+            return $res;
+        } catch (\Throwable $th) {
+            Database::rollBack();
+            throw $th;
+        }
+    }
+
+    public function validationPerformanceHistory(PerformanceHistoryRequest  $req):bool
+    {
+        if(
+            $req->getUserId() == null ||
+            $req->getMonth() == null ||
+            trim($req->getUserId()) == '' ||
+            trim($req->getMonth()) == ''
+        ){ 
+            throw new ValidationException("All Input can not blank", 0);
+         }
+         return true;
+
+
+        return true;
+    }
 }

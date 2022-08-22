@@ -4,9 +4,13 @@ namespace web\work\assessment\Controller;
 
 use web\work\assessment\App\View;
 
+use web\work\assessment\Module\Dates;
 use web\work\assessment\Config\Database;
+use web\work\assessment\Service\UserService;
+use web\work\assessment\Model\DashboardRequest;
 use web\work\assessment\Service\PackageService;
 use web\work\assessment\Service\SessionService;
+use web\work\assessment\Service\DashboardService;
 use web\work\assessment\Service\AttendanceService;
 use web\work\assessment\Repository\SessionRepository;
 use web\work\assessment\Exception\ValidationException;
@@ -14,14 +18,12 @@ use web\work\assessment\Repository\UserBaseRepository;
 use web\work\assessment\Model\SendReportPackageRequest;
 use web\work\assessment\Repository\AttendanceTraceRepository;
 use web\work\assessment\Repository\PackageSendedTraceRepository;
-use web\work\assessment\Model\DashboardRequest;
-use web\work\assessment\Module\Dates;
-use web\work\assessment\Service\DashboardService;
 
 class HomeController
 {
     private SessionService $sessionService;
     private AttendanceService $attendanceService;
+    private UserService $userService;
     private PackageService $packageService;
     private DashboardService $dashboardService;
 
@@ -34,6 +36,7 @@ class HomeController
         $attendanceRepository= new AttendanceTraceRepository($connection);
         $packageRepository = new PackageSendedTraceRepository($connection);
 
+        $this->userService = new UserService($userBaseRepository);
         $this->attendanceService = new AttendanceService($attendanceRepository);
         $this->sessionService = new SessionService($sessionRepository, $userBaseRepository);
         $this->packageService = new PackageService($packageRepository);
@@ -49,6 +52,9 @@ class HomeController
         $request->setDate($dateNow);
 
         $response = $this->dashboardService->inquiryDataDashboard($request);
+
+        $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+
         View::render('Home/index',[
             "title"=>"Dashboard",
             "userId"=>$userCurrent->getUserId(),
@@ -58,6 +64,7 @@ class HomeController
             "totalPackage"=>$response->getTotalPackage(),
             "commission"=>$response->getCommission(),
             "attendance"=>$response->getAttendance(),
+            "user_info"=>$user_info,
         ],true);
     }
 
@@ -66,6 +73,7 @@ class HomeController
 
         try {
             $this->attendanceService->create($userCurrent->getUserId());
+
             View::redirect('/');
         } catch (\Throwable $th) {
             //throw $th;
@@ -93,7 +101,6 @@ class HomeController
             View::redirect('/');
 
         } catch (ValidationException $e) {
-            //throw $th;
             View::redirect('/');
         }
 
