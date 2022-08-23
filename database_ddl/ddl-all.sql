@@ -1,5 +1,7 @@
 -- db_web_work_assessment.user_base definition
 
+-- db_web_work_assessment.user_base definition
+
 CREATE TABLE `user_base` (
   `user_id` varchar(15) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -34,18 +36,21 @@ CREATE TABLE `code_base` (
   `date_regist` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'timestamp',
   `date_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'timestamp',
   `remark` varchar(500) DEFAULT NULL COMMENT 'note',
-  PRIMARY KEY (`code`),
+  PRIMARY KEY (`value`),
   FULLTEXT KEY `remark` (`remark`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO code_base (`type`,code,code_title,value,date_regist,date_updated,remark) VALUES
-	 ('ATNDSTS',0,'Attendance Status Type','Late','2022-08-18 20:27:11','2022-08-18 20:27:11',NULL),
-	 ('ATNDSTS',1,'Attendance Status Type','On Time','2022-08-18 20:27:11','2022-08-18 20:27:11',NULL),
-	 ('ATNDSTS',2,'Attendance Status Type','Early','2022-08-18 20:27:11','2022-08-18 20:27:11',NULL);
-
-
-
-
+	 ('ATNDSTS',1,'Attendance Status Type','Late','2022-08-18 20:27:11','2022-08-20 07:22:30',NULL),
+	 ('ATNDSTS',2,'Attendance Status Type','On Time','2022-08-18 20:27:11','2022-08-20 07:23:09',NULL),
+	 ('ATNDSTS',3,'Attendance Status Type','Early','2022-08-18 20:27:11','2022-08-20 07:22:30',NULL),
+	 ('CTGREMARK',1,'Category Remark','Empty','2022-08-18 20:27:11','2022-08-20 07:22:30',NULL),
+	 ('CTGREMARK',2,'Category Remark','Just Info','2022-08-18 20:27:11','2022-08-20 07:24:25',NULL),
+	 ('CTGREMARK',3,'Category Remark','Information','2022-08-18 20:27:11','2022-08-20 07:24:25',NULL),
+	 ('CTGREMARK',4,'Category Remark','Tips And Trick','2022-08-18 20:27:11','2022-08-20 07:24:25',NULL),
+	 ('CTGREMARK',5,'Category Remark','Problem','2022-08-18 20:27:11','2022-08-20 07:24:26',NULL),
+	 ('GENDER',1,'Gender Type','Female','2022-08-18 20:27:11','2022-08-18 20:27:11',NULL),
+	 ('GENDER',2,'Gender Type','Male','2022-08-18 20:27:11','2022-08-18 20:27:11',NULL);
 
 
 -- db_web_work_assessment.attendance_trace definition
@@ -60,19 +65,16 @@ CREATE TABLE `attendance_trace` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-
 INSERT INTO attendance_trace (attendance_id,`date`,user_id,clock_in,status) VALUES
 	 ('62fe5da4b3d73','20220818','user1','2022-08-18 22:41:24',0),
 	 ('62fe66af70d2b','20220818','user2','2022-08-18 23:19:59',0);
 
 
 
-
-
 -- db_web_work_assessment.package_sended_trace definition
 
 CREATE TABLE `package_sended_trace` (
-  `id` int(20) NOT NULL COMMENT 'generate',
+  `package_id` int(255) NOT NULL COMMENT 'generate',
   `user_id` varchar(15) NOT NULL COMMENT 'FK with userid in user_base',
   `date` varchar(8) NOT NULL COMMENT 'yyyymmdd',
   `total_package` int(50) NOT NULL,
@@ -80,10 +82,8 @@ CREATE TABLE `package_sended_trace` (
   `remark` varchar(500) DEFAULT NULL,
   `date_regist` timestamp NOT NULL DEFAULT current_timestamp(),
   `date_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`package_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
 
 
 -- db_web_work_assessment.benefit_rule definition

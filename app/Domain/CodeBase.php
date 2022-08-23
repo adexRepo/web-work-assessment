@@ -7,12 +7,13 @@ use DateTime;
 class CodeBase
 {
 
-    private   string      $id;
+    private   string      $type;
     private  int $code;
     private string $codeTitle;
     private string $value;
     private DateTime $dateUpdated;
     private DateTime $dateRegist;
+    private DateTime $remark;
 
 	/**
 	 * @return DateTime
@@ -92,16 +93,31 @@ class CodeBase
 	/**
 	 * @return string
 	 */
-	function getId(): string {
-		return $this->id;
+	function getType(): string {
+		return $this->type;
 	}
 	
 	/**
-	 * @param string $id 
+	 * @param string $type 
 	 * @return CodeBase
 	 */
-	function setId(string $id): self {
-		$this->id = $id;
+	function setType(string $type): self {
+		$this->type = $type;
+		return $this;
+	}
+	/**
+	 * @return DateTime
+	 */
+	function getRemark(): DateTime {
+		return $this->remark;
+	}
+	
+	/**
+	 * @param DateTime $remark 
+	 * @return CodeBase
+	 */
+	function setRemark(DateTime $remark): self {
+		$this->remark = $remark;
 		return $this;
 	}
 }
