@@ -17,14 +17,6 @@
     }
 </style>
 
-<?php
-
-    // var_dump($model['user_info']['userId']);
-
-    // echo $model['user_info']['userId'];
-
-?>
-
 <div class="modal fade" id="attendance" tabindex="-1" aria-labelledby="attendance" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -138,52 +130,73 @@
                             </div>
                         </div>
                         <div class="row col">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label for="name" class="col-form-label">Name : </label>
-                                    <input name="name" type="text" value="<?= $model['user_info']['name']  ?>" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="name" disabled>
+                            <form>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="name" class="col-form-label">Name : </label>
+                                        <input name="name" type="text" value="<?= $model['user_info']['name']  ?>" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="name" disabled>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="phone" class="col-form-label">Phone : </label>
+                                        <input name="phone" type="text" value="<?= $model['user_info']['phone']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="phone" >
+                                    </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="phone" class="col-form-label">Phone : </label>
-                                    <input name="phone" type="text" value="<?= $model['user_info']['phone']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="phone" disabled>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="email" class="col-form-label">Email : </label>
+                                        <input name="email" type="text"  value="<?= $model['user_info']['email']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="email" >
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="branch" class="col-form-label">Branch : </label>
+                                        <select name="branch" id="branch" class="form-select shadow-sm mb-2 rounded bg-light bg-gradient" aria-label="Default select example">
+                                                <option selected value="0" >Choose Remark Category</option>
+                                                <option  value="1">Just Info</option>
+                                                <option  value="2">Tips and Trick</option>
+                                                <option  value="3">Problem</option>
+                                        </select>
+                                        <!-- <input name="branch" type="text"  value="<?= $model['user_info']['branchId']  ?>" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="branch" disabled> -->
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label for="email" class="col-form-label">Email : </label>
-                                    <input name="email" type="text"  value="<?= $model['user_info']['email']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="email" disabled>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="departemen" class="col-form-label">Departement : </label>
+                                        <select name="departemen" id="departemen" class="form-select shadow-sm mb-2 rounded bg-light bg-gradient" aria-label="Default select example">
+                                                <option selected value="0" >Choose Remark Category</option>
+                                                <option  value="1">Just Info</option>
+                                                <option  value="2">Tips and Trick</option>
+                                                <option  value="3">Problem</option>
+                                        </select>
+                                        <!-- <input name="departemen" type="text"  value="<?= $model['user_info']['departement']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="departemen" disabled> -->
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="team" class="col-form-label">Team : </label>
+                                        <select name="team" id="team" class="form-select shadow-sm mb-2 rounded bg-light bg-gradient" aria-label="Default select example">
+                                                <option selected value="0" >Choose Remark Category</option>
+                                                <option  value="1">Just Info</option>
+                                                <option  value="2">Tips and Trick</option>
+                                                <option  value="3">Problem</option>
+                                        </select>
+                                        <!-- <input name="team" type="text"  value="<?= $model['user_info']['team']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="login" disabled> -->
+                                    </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="branch" class="col-form-label">Branch : </label>
-                                    <input name="branch" type="text"  value="<?= $model['user_info']['branchId']  ?>" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="branch" disabled>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="AuthAndcontract" class="col-form-label">Employee Type : </label>
+                                        <input name="AuthAndcontract" type="text" value="<?= $model['user_info']['authUser']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="AuthAndcontract" disabled>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="registered" class="col-form-label">Date Registered : </label>
+                                        <input name="registered" type="text"  value="<?= $model['user_info']['dateRegist']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="registered" disabled>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label for="departemen" class="col-form-label">Departement : </label>
-                                    <input name="departemen" type="text"  value="<?= $model['user_info']['departement']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="departemen" disabled>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="team" class="col-form-label">Team : </label>
-                                    <input name="team" type="text"  value="<?= $model['user_info']['team']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="login" disabled>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label for="AuthAndcontract" class="col-form-label">Employee Type : </label>
-                                    <input name="AuthAndcontract" type="text" value="<?= $model['user_info']['authUser']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="AuthAndcontract" disabled>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="registered" class="col-form-label">Date Registered : </label>
-                                    <input name="registered" type="text"  value="<?= $model['user_info']['dateRegist']  ?>"  class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" id="registered" disabled>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <p> Si Cepat Mantap</p>
+                <button class="btn btn-md btn-primary shadow-md" type="submit">Update Information</button>
+                <button class="btn btn-md btn-secondary shadow-md" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
