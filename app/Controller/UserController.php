@@ -11,21 +11,27 @@ use web\work\assessment\Repository\SessionRepository;
 use web\work\assessment\Model\UserRegisterRequest;
 use web\work\assessment\Exception\ValidationException;
 use web\work\assessment\Model\UserLoginRequest;
+use web\work\assessment\Service\CodeManagementService;
+use web\work\assessment\Repository\CodeBaseRepository;
 
 class UserController
 {
     private UserService $userService;
     private SessionService $sessionService;
+    private CodeManagementService $codeManagementService;
 
     public function __construct()
     {
-        // setUp for get UserService
         $connection = Database::getConnection(); // alat koneksi
+
         $userBaseRepository = new UserBaseRepository($connection); // dikoneksiin ke table user_base
         $this->userService = new UserService($userBaseRepository); // service + repository
-
+        
         $sessionRepository = new SessionRepository($connection);
         $this->sessionService =  new SessionService($sessionRepository, $userBaseRepository);
+        
+        $CodeBaseRepository = new CodeBaseRepository($connection);
+        $this->codeManagementService = new CodeManagementService($CodeBaseRepository);
     }
 
     public function register()
@@ -71,7 +77,7 @@ class UserController
             $response = $response->getUser();
             $this->sessionService->create($response->getUserId());
             $this->userService->addInCookieUser($response->getUserId());
-
+            $this->codeManagementService->addCookieCode();
 
             View::redirect('/');
         } catch (ValidationException $e) {

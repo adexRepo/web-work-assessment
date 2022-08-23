@@ -52,9 +52,15 @@ class HomeController
         $request->setDate($dateNow);
 
         $response = $this->dashboardService->inquiryDataDashboard($request);
-
-        if(!empty($_COOKIE['USER_INFO']))
+        $user_info = [];
+        if(!empty($_COOKIE['USER_INFO'])){
             $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        }
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        }
+
+
 
         View::render('Home/index',[
             "title"=>"Dashboard",
@@ -66,6 +72,7 @@ class HomeController
             "commission"=>$response->getCommission(),
             "attendance"=>$response->getAttendance(),
             "user_info"=>$user_info,
+            "code"=>$code_info,
         ],true);
     }
 
