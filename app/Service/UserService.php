@@ -133,7 +133,7 @@ class UserService
 
         $serial = (serialize($arr));
 
-        setcookie('USER_INFO', base64_encode($serial), time()+3600,'/');
+        setcookie('USER_INFO', base64_encode($serial), time() + (60 * 60 * 24 * 30),'/');
         // $data = unserialize(base64_decode($_COOKIE['USER_INFO']));
     }
 

@@ -53,7 +53,8 @@ class HomeController
 
         $response = $this->dashboardService->inquiryDataDashboard($request);
 
-        $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        if(!empty($_COOKIE['USER_INFO']))
+            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
 
         View::render('Home/index',[
             "title"=>"Dashboard",
