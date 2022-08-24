@@ -6,207 +6,305 @@ use DateTime;
 
 class BenefitRule
 {
-    private string $id;
-
-    private int $authUser;
-
-    private string $departement;
-
-    private int $contract;
-
-    private string $principalSalary;
-
-    private string $interestSalary;
-
-    private int $target;
-
-    private int $promotion;
-
-    private string $userId;
-
+	private string     $ruleId           ;
+	private string     $userId           ;
+	private string $promotionType    ;
+	private int    $contract         ;
+	private int    $departement      ;
+	private int    $principalSalary  ;
+	private int    $targetOfDay      ;
+	private int    $interestSalary   ;
+	private int    $promotionStandart;
+	private string $remark           ;
     private DateTime $dateUpdated;
-
     private DateTime $dateRegist;
 
-    private string $remark;
+
 	/**
+	 * Get the value of ruleId
+	 *
 	 * @return string
 	 */
-	function getRemark(): string {
-		return $this->remark;
+	public function getRuleId(): string
+	{
+		return $this->ruleId;
 	}
-	
+
 	/**
-	 * @param string $remark 
-	 * @return BenefitRule
+	 * Set the value of ruleId
+	 *
+	 * @param string $ruleId
+	 *
+	 * @return self
 	 */
-	function setRemark(string $remark): self {
-		$this->remark = $remark;
+	public function setRuleId(string $ruleId): self
+	{
+		$this->ruleId = $ruleId;
+
 		return $this;
 	}
+
 	/**
-	 * @return DateTime
-	 */
-	function getDateRegist(): DateTime {
-		return $this->dateRegist;
-	}
-	
-	/**
-	 * @param DateTime $dateRegist 
-	 * @return BenefitRule
-	 */
-	function setDateRegist(DateTime $dateRegist): self {
-		$this->dateRegist = $dateRegist;
-		return $this;
-	}
-	/**
-	 * @return DateTime
-	 */
-	function getDateUpdated(): DateTime {
-		return $this->dateUpdated;
-	}
-	
-	/**
-	 * @param DateTime $dateUpdated 
-	 * @return BenefitRule
-	 */
-	function setDateUpdated(DateTime $dateUpdated): self {
-		$this->dateUpdated = $dateUpdated;
-		return $this;
-	}
-	/**
+	 * Get the value of promotionType
+	 *
 	 * @return string
 	 */
-	function getUserId(): string {
-		return $this->userId;
+	public function getPromotionType(): string
+	{
+		return $this->promotionType;
 	}
-	
+
 	/**
-	 * @param string $userId 
-	 * @return BenefitRule
+	 * Set the value of promotionType
+	 *
+	 * @param string $promotionType
+	 *
+	 * @return self
 	 */
-	function setUserId(string $userId): self {
-		$this->userId = $userId;
+	public function setPromotionType(string $promotionType): self
+	{
+		$this->promotionType = $promotionType;
+
 		return $this;
 	}
+
 	/**
+	 * Get the value of contract
+	 *
 	 * @return int
 	 */
-	function getPromotion(): int {
-		return $this->promotion;
-	}
-	
-	/**
-	 * @param int $promotion 
-	 * @return BenefitRule
-	 */
-	function setPromotion(int $promotion): self {
-		$this->promotion = $promotion;
-		return $this;
-	}
-	/**
-	 * @return int
-	 */
-	function getTarget(): int {
-		return $this->target;
-	}
-	
-	/**
-	 * @param int $target 
-	 * @return BenefitRule
-	 */
-	function setTarget(int $target): self {
-		$this->target = $target;
-		return $this;
-	}
-	/**
-	 * @return string
-	 */
-	function getInterestSalary(): string {
-		return $this->interestSalary;
-	}
-	
-	/**
-	 * @param string $interestSalary 
-	 * @return BenefitRule
-	 */
-	function setInterestSalary(string $interestSalary): self {
-		$this->interestSalary = $interestSalary;
-		return $this;
-	}
-	/**
-	 * @return string
-	 */
-	function getPrincipalSalary(): string {
-		return $this->principalSalary;
-	}
-	
-	/**
-	 * @param string $principalSalary 
-	 * @return BenefitRule
-	 */
-	function setPrincipalSalary(string $principalSalary): self {
-		$this->principalSalary = $principalSalary;
-		return $this;
-	}
-	/**
-	 * @return int
-	 */
-	function getContract(): int {
+	public function getContract(): int
+	{
 		return $this->contract;
 	}
-	
+
 	/**
-	 * @param int $contract 
-	 * @return BenefitRule
+	 * Set the value of contract
+	 *
+	 * @param int $contract
+	 *
+	 * @return self
 	 */
-	function setContract(int $contract): self {
+	public function setContract(int $contract): self
+	{
 		$this->contract = $contract;
+
 		return $this;
 	}
+
 	/**
-	 * @return string
-	 */
-	function getDepartement(): string {
-		return $this->departement;
-	}
-	
-	/**
-	 * @param string $departement 
-	 * @return BenefitRule
-	 */
-	function setDepartement(string $departement): self {
-		$this->departement = $departement;
-		return $this;
-	}
-	/**
+	 * Get the value of departement
+	 *
 	 * @return int
 	 */
-	function getAuthUser(): int {
-		return $this->authUser;
+	public function getDepartement(): int
+	{
+		return $this->departement;
 	}
-	
+
 	/**
-	 * @param int $authUser 
-	 * @return BenefitRule
+	 * Set the value of departement
+	 *
+	 * @param int $departement
+	 *
+	 * @return self
 	 */
-	function setAuthUser(int $authUser): self {
-		$this->authUser = $authUser;
+	public function setDepartement(int $departement): self
+	{
+		$this->departement = $departement;
+
 		return $this;
 	}
+
 	/**
+	 * Get the value of principalSalary
+	 *
+	 * @return int
+	 */
+	public function getPrincipalSalary(): int
+	{
+		return $this->principalSalary;
+	}
+
+	/**
+	 * Set the value of principalSalary
+	 *
+	 * @param int $principalSalary
+	 *
+	 * @return self
+	 */
+	public function setPrincipalSalary(int $principalSalary): self
+	{
+		$this->principalSalary = $principalSalary;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of targetOfDay
+	 *
+	 * @return int
+	 */
+	public function getTargetOfDay(): int
+	{
+		return $this->targetOfDay;
+	}
+
+	/**
+	 * Set the value of targetOfDay
+	 *
+	 * @param int $targetOfDay
+	 *
+	 * @return self
+	 */
+	public function setTargetOfDay(int $targetOfDay): self
+	{
+		$this->targetOfDay = $targetOfDay;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of interestSalary
+	 *
+	 * @return int
+	 */
+	public function getInterestSalary(): int
+	{
+		return $this->interestSalary;
+	}
+
+	/**
+	 * Set the value of interestSalary
+	 *
+	 * @param int $interestSalary
+	 *
+	 * @return self
+	 */
+	public function setInterestSalary(int $interestSalary): self
+	{
+		$this->interestSalary = $interestSalary;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of promotionStandart
+	 *
+	 * @return int
+	 */
+	public function getPromotionStandart(): int
+	{
+		return $this->promotionStandart;
+	}
+
+	/**
+	 * Set the value of promotionStandart
+	 *
+	 * @param int $promotionStandart
+	 *
+	 * @return self
+	 */
+	public function setPromotionStandart(int $promotionStandart): self
+	{
+		$this->promotionStandart = $promotionStandart;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of remark
+	 *
 	 * @return string
 	 */
-	function getId(): string {
-		return $this->id;
+	public function getRemark(): string
+	{
+		return $this->remark;
 	}
-	
+
 	/**
-	 * @param string $id 
-	 * @return BenefitRule
+	 * Set the value of remark
+	 *
+	 * @param string $remark
+	 *
+	 * @return self
 	 */
-	function setId(string $id): self {
-		$this->id = $id;
+	public function setRemark(string $remark): self
+	{
+		$this->remark = $remark;
+
+		return $this;
+	}
+
+    /**
+     * Get the value of dateUpdated
+     *
+     * @return DateTime
+     */
+    public function getDateUpdated(): DateTime
+    {
+        return $this->dateUpdated;
+    }
+
+    /**
+     * Set the value of dateUpdated
+     *
+     * @param DateTime $dateUpdated
+     *
+     * @return self
+     */
+    public function setDateUpdated(DateTime $dateUpdated): self
+    {
+        $this->dateUpdated = $dateUpdated;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateRegist
+     *
+     * @return DateTime
+     */
+    public function getDateRegist(): DateTime
+    {
+        return $this->dateRegist;
+    }
+
+    /**
+     * Set the value of dateRegist
+     *
+     * @param DateTime $dateRegist
+     *
+     * @return self
+     */
+    public function setDateRegist(DateTime $dateRegist): self
+    {
+        $this->dateRegist = $dateRegist;
+
+        return $this;
+    }
+
+	/**
+	 * Get the value of userId
+	 *
+	 * @return string
+	 */
+	public function getUserId(): string
+	{
+		return $this->userId;
+	}
+
+	/**
+	 * Set the value of userId
+	 *
+	 * @param string $userId
+	 *
+	 * @return self
+	 */
+	public function setUserId(string $userId): self
+	{
+		$this->userId = $userId;
+
 		return $this;
 	}
 }

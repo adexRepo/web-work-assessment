@@ -41,10 +41,14 @@ class PerformanceController
         $request->setMonth($month);
 
         $dataHistory = $this->packageService->inquiryPackageHistory($request);
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
+        }
         
         View::render('/Perform/performance',[
             "title"=>"Performance",
-            "history"=> $dataHistory
+            "history"=> $dataHistory,
+            "code"=>$code_info,
         ],true);
     }
 

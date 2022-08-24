@@ -3,6 +3,7 @@
 namespace web\work\assessment\Repository;
 
 use web\work\assessment\Domain\UserBase;
+use web\work\assessment\Domain\AdviceTrace;
 
 /**
  * @author Adek Kristiyanto <dkkrstnt@gmail.com>
@@ -35,10 +36,49 @@ class UserBaseRepository
         return $userBase;
     }
 
+    public function update(UserBase $req):UserBase
+    {
+        $query = $this->connection->prepare( 
+            "UPDATE user_base SET 
+                name = ?,
+                phone = ?,
+                email = ?
+                WHERE user_id = ?");
+
+        $query->execute([
+            $req->getName(),
+            $req->getPhone(),
+            $req->getEmail(),
+            $req->getUserId(),
+        ]);
+
+        $query->closeCursor();
+        return $req;
+    }
+
     public function findById(string $userId): ?UserBase
     {
         $query = $this->connection->prepare(
-            "SELECT * FROM user_base WHERE user_id = ?"
+            "SELECT
+                user_id   
+                ,name      
+                ,(select value from code_base cb  where type = 'GENDER' and code = gender) as  gender
+                ,(select value from code_base cb  where type = 'STATUSUSER' and code = status) as  status
+                ,password    
+                ,phone       
+                ,email   
+                ,(select value from code_base cb  where type = 'AUTHUSER' and code = auth_user) as  auth_user
+                ,departement 
+                ,branch_id 
+                ,(select value from code_base cb  where type = 'CONTRACT' and code = contract) as  contract
+                ,last_contract
+                ,date_regist
+                ,date_updated
+                ,remark    
+            from
+                user_base
+            where user_id = ?
+            "
         );
         $query->execute([$userId]);
         $outputQuery = $query->fetch();
@@ -51,23 +91,38 @@ class UserBaseRepository
             $user->setName        ($outputQuery['name'         ]);
             $user->setGender      ($outputQuery['gender'       ]);
             $user->setStatus      ($outputQuery['status'       ] ?? 0);
-            $user->setPassword ($outputQuery['password']);
+            $user->setPassword    ($outputQuery['password'     ]);
             $user->setPhone       ($outputQuery['phone'        ] ?? 0);
             $user->setEmail       ($outputQuery['email'        ] ?? '');
             $user->setAuthUser    ($outputQuery['auth_user'    ] ?? 0);
-            $user->setTeam        ($outputQuery['team'         ] ?? '');
             $user->setDepartement ($outputQuery['departement'  ] ?? '');
             $user->setBranchId    ($outputQuery['branch_id'    ] ?? '');
             $user->setContract    ($outputQuery['contract'     ] ?? 0);
             $user->setLastContract($outputQuery['last_contract'] ?? '');
             $user->setDateRegist  ($outputQuery['date_regist'  ] ?? '');
-            $user->setDateUpdated ($outputQuery['date_update'  ] ?? '');
+            $user->setDateUpdated ($outputQuery['date_updated'  ] ?? '');
             $user->setRemark      ($outputQuery['remark'       ] ?? '');
 
             return $user;
         }finally{
             $query->closeCursor();
         }
+    }
+
+    public function insertAdvice(AdviceTrace $advice)
+    {
+        $query = $this->connection->prepare(
+            "INSERT INTO 
+                advice_trace(user_id,title, message)
+                VALUES(?, ?, ?)"
+        );
+
+        $query->execute([
+            $advice->getUserId(),
+            $advice->getTitle(),
+            $advice->getMessage()
+        ]);
+        return $advice;
     }
 
     public function findCountIdRegistered():int

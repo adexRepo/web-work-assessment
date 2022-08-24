@@ -17,7 +17,6 @@ class CodeManagementService
     public function addCookieCode()
     {
         $arrOutput = $this->codeBaseRepository->cookieCode();
-
         $serial = (serialize($arrOutput));
 
         setcookie(self::$COOKIE_NAME, base64_encode($serial), time() + (60 * 60 * 24 * 30),'/');

@@ -15,7 +15,7 @@ class CodeBaseRepository
     public function cookieCode()
     {
         $query = $this->connection->prepare(
-            "SELECT type, code, value from code_base order by `type` asc, code asc;"
+            "SELECT type, code, value from code_base where type in ('BRANCH') order by `type` asc, code asc;"
         );
 
         $query->execute([]);
@@ -23,7 +23,6 @@ class CodeBaseRepository
         if($outputQuery === false) return null;
 
         try{
-
             return $outputQuery;
 
         }finally{
@@ -33,13 +32,3 @@ class CodeBaseRepository
         
     }
 }
-
-
-
-// f(!in_array($value['type'], $type))
-//                 // {
-//                 //     array_push($type,$value['type']);
-
-//                 // }else{
-                    
-//                 // }

@@ -1,20 +1,23 @@
 <?php
 
 namespace web\work\assessment\Service;
-use web\work\assessment\Model\UserRegisterRequest;
-use web\work\assessment\Model\UserRegisterResponse;
-use web\work\assessment\Repository\UserBaseRepository;
-use web\work\assessment\Exception\ValidationException;
-use web\work\assessment\Domain\UserBase;
 use web\work\assessment\Config\Database;
+use web\work\assessment\Domain\UserBase;
+use web\work\assessment\Domain\AdviceTrace;
 use web\work\assessment\Model\UserLoginRequest;
+use web\work\assessment\Model\SendAdviceRequest;
 use web\work\assessment\Model\UserLoginResponse;
+use web\work\assessment\Model\UserRegisterRequest;
+use web\work\assessment\Model\UpdateProfileRequest;
+use web\work\assessment\Model\UserRegisterResponse;
+use web\work\assessment\Exception\ValidationException;
+use web\work\assessment\Repository\UserBaseRepository;
 
 class UserService
 {
 
-    private UserBaseRepository $userBaseRepository;
     public static string $COOKIE_NAME = 'USER_INFO';
+    private UserBaseRepository $userBaseRepository;
 
 
     public function __construct(UserBaseRepository $userBaseRepository)
@@ -110,34 +113,78 @@ class UserService
         return true;
     }
 
+    public function updateProfile(UpdateProfileRequest $req)
+    {
+        $user = new UserBase();
+        $user->setUserId($req->getUserId());
+        $user->setName($req->getName());
+        $user->setEmail($req->getEmail());
+        $user->setPhone($req->getPhone());
+
+        try{
+            Database::beginTransaction();
+
+            $this->userBaseRepository->update($user);
+
+            $this->addInCookieUser($req->getUserId());
+
+            Database::commit();
+        } catch (\Throwable $th) {
+            Database::rollBack();
+            throw $th;
+        }
+
+        return true;
+
+    }
+
+    public function sendAdvice(SendAdviceRequest $req)
+    {
+        $advice = new AdviceTrace();
+        $advice->setUserId($req->getUserId());
+        $advice->setTitle($req->getTitle());
+        $advice->setMessage($req->getMessage());
+
+        try{
+            Database::beginTransaction();
+
+            $this->userBaseRepository->insertAdvice($advice);
+
+            $this->addInCookieUser($req->getUserId());
+
+            Database::commit();
+        } catch (\Throwable $th) {
+            Database::rollBack();
+            throw $th;
+        }
+
+    }
+
 
     public function addInCookieUser(string $userId)
     {
         $arrOutput = $this->userBaseRepository->findById($userId);
 
         $arr = [];
-        $arr['userId'      ] = $arrOutput->getUserId       ();
-        $arr['name'        ] = $arrOutput->getName       ();
-        $arr['gender'      ] = $arrOutput->getGender         ();
-        $arr['phone'       ] = $arrOutput->getPhone       ();
-        $arr['email'       ] = $arrOutput->getEmail       ();
-        $arr['password'    ] = $arrOutput->getPassword        ();
-        $arr['status'      ] = $arrOutput->getStatus        ();
-        $arr['contract'    ] = $arrOutput->getContract     ();
-        $arr['dateRegist'  ] = $arrOutput->getDateRegist         ();
-        $arr['dateUpdated' ] = $arrOutput->getDateUpdated  ();
-        $arr['authUser'    ] = $arrOutput->getAuthUser     ();
-        $arr['team'        ] = $arrOutput->getTeam      ();
-        $arr['departement' ] = $arrOutput->getDepartement ();
-        $arr['branchId'    ] = $arrOutput->getBranchId   ();
-        $arr['lastContract'] = $arrOutput->getLastContract  ();
-        $arr['remark'      ] = $arrOutput->getRemark       ();
+        $arr['userId'      ] = $arrOutput->getUserId();
+        $arr['name'        ] = $arrOutput->getName();
+        $arr['gender'      ] = $arrOutput->getGender();
+        $arr['phone'       ] = $arrOutput->getPhone();
+        $arr['email'       ] = $arrOutput->getEmail();
+        $arr['password'    ] = $arrOutput->getPassword();
+        $arr['status'      ] = $arrOutput->getStatus();
+        $arr['contract'    ] = $arrOutput->getContract();
+        $arr['dateRegist'  ] = $arrOutput->getDateRegist();
+        $arr['dateUpdated' ] = $arrOutput->getDateUpdated();
+        $arr['authUser'    ] = $arrOutput->getAuthUser();
+        $arr['departement' ] = $arrOutput->getDepartement();
+        $arr['branchId'    ] = $arrOutput->getBranchId();
+        $arr['lastContract'] = $arrOutput->getLastContract();
+        $arr['remark'      ] = $arrOutput->getRemark();
 
         $serial = (serialize($arr));
 
-        
         setcookie(self::$COOKIE_NAME, base64_encode($serial), time() + (60 * 60 * 24 * 30),'/');
         // $data = unserialize(base64_decode($_COOKIE[self::$COOKIE_NAME]));
     }
-
 }
