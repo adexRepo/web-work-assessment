@@ -3,12 +3,13 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use web\work\assessment\App\Router;
+use web\work\assessment\Config\Database;
 use web\work\assessment\Controller\HomeController;
 use web\work\assessment\Controller\UserController;
+use web\work\assessment\Controller\PromotionController;
+use web\work\assessment\Middleware\MustLoginMiddleware;
 use web\work\assessment\Controller\AttendanceController;
 use web\work\assessment\Controller\PerformanceController;
-use web\work\assessment\Config\Database;
-use web\work\assessment\Middleware\MustLoginMiddleware;
 use web\work\assessment\Middleware\MustNotLoginMiddleware;
 
 // database config
@@ -21,6 +22,9 @@ Router::add('GET', '/home/promotions' , HomeController::class, 'promotion'  ,[Mu
 
 // popup
 Router::add('POST', '/popup/send-report' , HomeController::class, 'postSendReport' ,[MustLoginMiddleware::class]);
+Router::add('POST', '/popup/update-profile' , HomeController::class, 'postUpdateProfile' ,[MustLoginMiddleware::class]);
+Router::add('POST', '/popup/set-benefit' , PromotionController::class, 'postSetBenefitRule' ,[MustLoginMiddleware::class]);
+Router::add('POST', '/popup/advice' , HomeController::class, 'postAdvice' ,[MustLoginMiddleware::class]);
 Router::add('GET', '/popup/clockin'   , HomeController::class, 'clockIn' ,[MustLoginMiddleware::class]);
 
 // Attendance Controller

@@ -10,8 +10,10 @@ use web\work\assessment\Service\UserService;
 use web\work\assessment\Model\DashboardRequest;
 use web\work\assessment\Service\PackageService;
 use web\work\assessment\Service\SessionService;
+use web\work\assessment\Model\SendAdviceRequest;
 use web\work\assessment\Service\DashboardService;
 use web\work\assessment\Service\AttendanceService;
+use web\work\assessment\Model\UpdateProfileRequest;
 use web\work\assessment\Repository\SessionRepository;
 use web\work\assessment\Exception\ValidationException;
 use web\work\assessment\Repository\UserBaseRepository;
@@ -35,6 +37,7 @@ class HomeController
         $userBaseRepository = new UserBaseRepository($connection);
         $attendanceRepository= new AttendanceTraceRepository($connection);
         $packageRepository = new PackageSendedTraceRepository($connection);
+        $packageRepository = new PackageSendedTraceRepository($connection);
 
         $this->userService = new UserService($userBaseRepository);
         $this->attendanceService = new AttendanceService($attendanceRepository);
@@ -53,14 +56,13 @@ class HomeController
 
         $response = $this->dashboardService->inquiryDataDashboard($request);
         $user_info = [];
+        $code_info = [];
         if(!empty($_COOKIE['USER_INFO'])){
             $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
         }
         if(!empty($_COOKIE['CODE_CC'])){
-            $code_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
         }
-
-
 
         View::render('Home/index',[
             "title"=>"Dashboard",
@@ -114,17 +116,93 @@ class HomeController
 
     }
 
+    public function postAdvice()
+    {
+        $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+
+        $req = new SendAdviceRequest();
+        $req->setUserId($user_info['userId']);
+        $req->setTitle($_POST['title']);
+        $req->setMessage($_POST['message']);
+
+        try {
+            $this->userService->sendAdvice($req);
+
+            View::redirect('/');
+
+        } catch (ValidationException $e) {
+            View::redirect('/');
+        }
+
+    }
+
+    public function postUpdateProfile()
+    {
+        $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+
+        $req = new UpdateProfileRequest();
+        $req->setUserId($user_info['userId']);
+        $req->setName($_POST['name']);
+        $req->setPhone($_POST['phone']);
+        $req->setEmail($_POST['email']);
+        
+        try {
+            $this->userService->updateProfile($req);
+
+            View::redirect('/');
+        } catch (\Throwable $th) {
+            View::redirect('/');
+        }
+    }
+
     function performance(): void
     {
-        View::render('home/performance',["title"=>"Performance"],true);
+        $user_info = [];
+        $code_info = [];
+        if(!empty($_COOKIE['USER_INFO'])){
+            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        }
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
+        }
+
+        View::render('home/performance',[
+            "title"=>"Performance",
+            "user_info"=>$user_info,
+            "code"=>$code_info
+        ],true);
     }
     function promotion(): void
     {
-        View::render('home/promotions',["title"=>"Promotion"],true);
+        $user_info = [];
+        $code_info = [];
+        if(!empty($_COOKIE['USER_INFO'])){
+            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        }
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
+        }
+        View::render('home/promotions',[
+            "title"=>"Promotion",
+            "user_info"=>$user_info,
+            "code"=>$code_info
+        ],true);
     }
     function aboutUs(): void
     {
-        View::render('home/about-us',["title"=>"About Us"],true);
+        $user_info = [];
+        $code_info = [];
+        if(!empty($_COOKIE['USER_INFO'])){
+            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        }
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
+        }
+        View::render('home/about-us',[
+            "title"=>"About Us",
+            "user_info"=>$user_info,
+            "code"=>$code_info
+        ],true);
     }
 
 }

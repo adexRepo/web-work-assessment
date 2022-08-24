@@ -9,18 +9,17 @@ class UserBase
     // NOTE when registered by kyn
     private   string      $userId       ;
     private   string      $name         ;
-    private   int         $gender       ;
+    private   string      $gender       ;
 	
     // NOTE when registered by spv
-    private   int         $phone         ;
+    private   string      $phone         ;
     private   string      $email         ;
     private   string      $password      ;
-    private   int         $status        ;
-    private   int         $contract      ;
+    private   string      $status        ;
+    private   string      $contract      ;
     private   string      $dateRegist    ;
     private   string      $dateUpdated   ;
-    private   int         $authUser      ;
-    private   string      $team          ;
+    private   string      $authUser      ;
     private   string      $departement   ;
     private   string      $branchId      ;
     private   string      $lastContract  ;
@@ -58,21 +57,6 @@ class UserBase
 		return $this;
 	}
 	/**
-	 * @return int
-	 */
-	function getGender(): int {
-		return $this->gender;
-	}
-	
-	/**
-	 * @param int $gender 
-	 * @return UserBase
-	 */
-	function setGender(int $gender): self {
-		$this->gender = $gender;
-		return $this;
-	}
-	/**
 	 * @return string
 	 */
 	function getPassword() {
@@ -88,36 +72,6 @@ class UserBase
 		return $this;
 	}
 	/**
-	 * @return int
-	 */
-	function getStatus(): int {
-		return $this->status;
-	}
-	
-	/**
-	 * @param int $status 
-	 * @return UserBase
-	 */
-	function setStatus(int $status): self {
-		$this->status = $status;
-		return $this;
-	}
-	/**
-	 * @return string
-	 */
-	function getTeam(): string {
-		return $this->team;
-	}
-	
-	/**
-	 * @param string $team 
-	 * @return UserBase
-	 */
-	function setTeam(string $team): self {
-		$this->team = $team;
-		return $this;
-	}
-	/**
 	 * @return string
 	 */
 	function getDepartement(): string {
@@ -130,21 +84,6 @@ class UserBase
 	 */
 	function setDepartement(string $departement): self {
 		$this->departement = $departement;
-		return $this;
-	}
-	/**
-	 * @return int
-	 */
-	function getContract(): int {
-		return $this->contract;
-	}
-	
-	/**
-	 * @param int $contract 
-	 * @return UserBase
-	 */
-	function setContract(int $contract): self {
-		$this->contract = $contract;
 		return $this;
 	}
 	/**
@@ -177,46 +116,6 @@ class UserBase
 		$this->remark = $remark;
 		return $this;
 	}
-	/**
-	 * @return int
-	 */
-	function getAuthUser(): int {
-		return $this->authUser;
-	}
-	
-	/**
-	 * @param int $authUser 
-	 * @return UserBase
-	 */
-	function setAuthUser(int $authUser): self {
-		$this->authUser = $authUser;
-		return $this;
-	}
-
-    /**
-     * Get the value of phone
-     *
-     * @return int
-     */
-    public function getPhone(): int
-    {
-        return $this->phone;
-    }
-
-    /**
-     * Set the value of phone
-     *
-     * @param int $phone
-     *
-     * @return self
-     */
-    public function setPhone(int $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
     /**
      * Get the value of email
      *
@@ -309,6 +208,126 @@ class UserBase
     public function setDateUpdated(string $dateUpdated): self
     {
         $this->dateUpdated = $dateUpdated;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of phone
+     *
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set the value of phone
+     *
+     * @param string $phone
+     *
+     * @return self
+     */
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of gender
+     *
+     * @return string
+     */
+    public function getGender(): string
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set the value of gender
+     *
+     * @param string $gender
+     *
+     * @return self
+     */
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of contract
+     *
+     * @return string
+     */
+    public function getContract(): string
+    {
+        return $this->contract;
+    }
+
+    /**
+     * Set the value of contract
+     *
+     * @param string $contract
+     *
+     * @return self
+     */
+    public function setContract(string $contract): self
+    {
+        $this->contract = $contract;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     *
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     *
+     * @param string $status
+     *
+     * @return self
+     */
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of authUser
+     *
+     * @return string
+     */
+    public function getAuthUser(): string
+    {
+        return $this->authUser;
+    }
+
+    /**
+     * Set the value of authUser
+     *
+     * @param string $authUser
+     *
+     * @return self
+     */
+    public function setAuthUser(string $authUser): self
+    {
+        $this->authUser = $authUser;
 
         return $this;
     }

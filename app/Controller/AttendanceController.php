@@ -42,10 +42,14 @@ class AttendanceController
         $request->setMonth($month);
 
         $dataHistory = $this->attendanceService->inquiryAttendanceHistory($request);
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
+        }
 
         View::render('/Attend/attendance',[
             "title"=>"Attendance",
-            "history"=> $dataHistory
+            "history"=> $dataHistory,
+            "code"=>$code_info,
         ],true);
     }
 }

@@ -68,7 +68,6 @@ class PackageService
             throw $th;
         }
 
-
     }
 
     public function validationPackageSent(SendReportPackageRequest $req):bool

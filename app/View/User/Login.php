@@ -41,7 +41,7 @@
                                     <label for="password">Password</label>
                                 </div>
                                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
-                                <p class="text-center mt-3"> <a href="#">Forgot password?</a> </p>
+                                <!-- <p class="text-center mt-3"> <a href="#">Forgot password?</a> </p> -->
                                 <p>Don't have an account? <a href="/users/register">Register</a></p>
                             </form>
                         </div>

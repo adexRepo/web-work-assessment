@@ -142,10 +142,6 @@
                                         <input name="name" type="text" class="form-control shadow-sm mb-2 rounded bg-light bg-gradient" disabled id="name" placeholder="Username">
                                         <label for="name"><?= $model['name']?></label>
                                     </div>
-                                    <!-- <div class="form-floating mb-3">
-                                        <input name="branch" type="text" class="form-control shadow-sm mb-2 rounded h-10 bg-light bg-gradient"  disabled id="branch" placeholder="Username">
-                                        <label for="branch">Branch</label>
-                                    </div> -->
                                     <div class="form-floating mb-3">
                                         <input name="date" type="date" class="form-control shadow-sm mb-2 rounded h-10 bg-light bg-gradient"  id="date" placeholder="Username">
                                         <label for="date">Date</label>
@@ -157,9 +153,9 @@
                                     <div class="mb-3">
                                         <select name="remarkCode" id="remarkCode" class="form-select p-3 shadow-sm mb-2 bg-body rounded h-10" aria-label="Default select example">
                                             <option selected value="0" >Choose Remark Category</option>
-                                            <option  value="1">Just Info</option>
-                                            <option  value="2">Tips and Trick</option>
-                                            <option  value="3">Problem</option>
+                                            <option  value="2">Just Info</option>
+                                            <option  value="3">Tips And Trick</option>
+                                            <option  value="4">Problem</option>
                                         </select>
                                     </div>
                                     <div class="form-floating">
