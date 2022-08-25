@@ -19,7 +19,7 @@ class UserBaseRepository
         $this->connection = $connection;
     }
 
-    public function save(UserBase $userBase):UserBase
+    public function save(UserBase $userBase):?UserBase
     {
         $query = $this->connection->prepare(
             "INSERT INTO 
@@ -33,10 +33,16 @@ class UserBaseRepository
             $userBase->getGender(),
             $userBase->getPassword()
         ]);
-        return $userBase;
+
+        try{
+            return $userBase;
+        }
+        finally{
+            $query->closeCursor();
+        }    
     }
 
-    public function update(UserBase $req):UserBase
+    public function update(UserBase $req):?UserBase
     {
         $query = $this->connection->prepare( 
             "UPDATE user_base SET 
@@ -52,8 +58,12 @@ class UserBaseRepository
             $req->getUserId(),
         ]);
 
-        $query->closeCursor();
-        return $req;
+        try{
+            return $req;
+        }
+        finally{
+            $query->closeCursor();
+        }    
     }
 
     public function findById(string $userId): ?UserBase
