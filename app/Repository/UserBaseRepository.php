@@ -19,7 +19,7 @@ class UserBaseRepository
         $this->connection = $connection;
     }
 
-    public function save(UserBase $userBase):UserBase
+    public function save(UserBase $userBase):?UserBase
     {
         $query = $this->connection->prepare(
             "INSERT INTO 
