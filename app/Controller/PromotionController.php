@@ -22,6 +22,23 @@ class PromotionController
         
     }
 
+    function promotion(): void
+    {
+        $user_info = [];
+        $code_info = [];
+        if(!empty($_COOKIE['USER_INFO'])){
+            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        }
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
+        }
+        View::render('home/promotions',[
+            "title"=>"Promotion",
+            "user_info"=>$user_info,
+            "code"=>$code_info
+        ],true);
+    }
+
     public function postSetBenefitRule()
     {
         $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
@@ -41,10 +58,10 @@ class PromotionController
         try {
             $this->promotionService->register($req);
 
-            View::redirect('/');
+            View::redirect('/home/promotions');
 
         } catch (ValidationException $e) {
-            View::redirect('/');
+            View::redirect('/home/promotions');
         }
 
     }

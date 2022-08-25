@@ -172,22 +172,7 @@ class HomeController
             "code"=>$code_info
         ],true);
     }
-    function promotion(): void
-    {
-        $user_info = [];
-        $code_info = [];
-        if(!empty($_COOKIE['USER_INFO'])){
-            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
-        }
-        if(!empty($_COOKIE['CODE_CC'])){
-            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
-        }
-        View::render('home/promotions',[
-            "title"=>"Promotion",
-            "user_info"=>$user_info,
-            "code"=>$code_info
-        ],true);
-    }
+
     function aboutUs(): void
     {
         $user_info = [];

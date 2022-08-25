@@ -19,20 +19,31 @@ class PromotionService
 
     public function register(SetBenefitRuleRequest $req)
     {
+        
         try {
+            Database::beginTransaction();
 
             $benefit = new BenefitRule();
-            $benefit->setRuleId           ($req->getRuleId(),);
-            $benefit->setUserId           ($req->getUserId(),);
-            $benefit->setDepartement      ($req->getDepartement(),);
-            $benefit->setPrincipalSalary  ($req->getPrincipalSalary(),);
-            $benefit->setTargetOfDay      ($req->getTargetOfDay(),);
-            $benefit->setInterestSalary   ($req->getInterestSalary(),);
-            $benefit->setPromotionType    ($req->getPromotionType(),);
-            $benefit->setPromotionStandart($req->getPromotionStandart(),);
+            $benefit->setRuleId           ($req->getRuleId());
+            $benefit->setUserId           ($req->getUserId());
+            $benefit->setDepartement      ($req->getDepartement());
+            $benefit->setPrincipalSalary  ($req->getPrincipalSalary());
+            $benefit->setContract         ($req->getContract());
+            $benefit->setTargetOfDay      ($req->getTargetOfDay());
+            $benefit->setInterestSalary   ($req->getInterestSalary());
+            $benefit->setPromotionType    ($req->getPromotionType());
+            $benefit->setPromotionStandart($req->getPromotionStandart());
             $benefit->setRemark           ($req->getRemark());
 
-            $this->benefitRuleRepository->save($benefit);
+            $res = $this->benefitRuleRepository->findById($req->getRuleId());
+
+            if($res != null)
+            {
+                $this->benefitRuleRepository->update($benefit);
+            }else{
+                $this->benefitRuleRepository->save($benefit);
+            }
+
             Database::commit();
             return $benefit;
         } catch (\Throwable $th) {

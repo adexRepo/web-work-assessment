@@ -6,7 +6,7 @@ class SetBenefitRuleRequest
 {
     private ?string $ruleId            = null;
     private ?string $userId            = null;
-    private ?string $promotionType     = null;
+    private ?int $promotionType     = null;
     private ?int    $contract          = null;
     private ?int    $departement       = null;
     private ?int    $principalSalary   = null;
@@ -36,30 +36,6 @@ class SetBenefitRuleRequest
     public function setRuleId(?string $ruleId): self
     {
         $this->ruleId = $ruleId;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of promotionType
-     *
-     * @return ?string
-     */
-    public function getPromotionType(): ?string
-    {
-        return $this->promotionType;
-    }
-
-    /**
-     * Set the value of promotionType
-     *
-     * @param ?string $promotionType
-     *
-     * @return self
-     */
-    public function setPromotionType(?string $promotionType): self
-    {
-        $this->promotionType = $promotionType;
 
         return $this;
     }
@@ -255,4 +231,19 @@ class SetBenefitRuleRequest
 
         return $this;
     }
+	/**
+	 * @return ?int
+	 */
+	function getPromotionType(): ?int {
+		return $this->promotionType;
+	}
+	
+	/**
+	 * @param ?int $promotionType 
+	 * @return SetBenefitRuleRequest
+	 */
+	function setPromotionType(?int $promotionType): self {
+		$this->promotionType = $promotionType;
+		return $this;
+	}
 }
