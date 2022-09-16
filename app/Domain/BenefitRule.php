@@ -45,30 +45,6 @@ class BenefitRule
 	}
 
 	/**
-	 * Get the value of promotionType
-	 *
-	 * @return string
-	 */
-	public function getPromotionType(): string
-	{
-		return $this->promotionType;
-	}
-
-	/**
-	 * Set the value of promotionType
-	 *
-	 * @param string $promotionType
-	 *
-	 * @return self
-	 */
-	public function setPromotionType(string $promotionType): self
-	{
-		$this->promotionType = $promotionType;
-
-		return $this;
-	}
-
-	/**
 	 * Get the value of contract
 	 *
 	 * @return int
@@ -305,6 +281,21 @@ class BenefitRule
 	{
 		$this->userId = $userId;
 
+		return $this;
+	}
+	/**
+	 * @return int
+	 */
+	function getPromotionType(): int {
+		return $this->promotionType;
+	}
+	
+	/**
+	 * @param int $promotionType 
+	 * @return BenefitRule
+	 */
+	function setPromotionType(int $promotionType): self {
+		$this->promotionType = $promotionType;
 		return $this;
 	}
 }

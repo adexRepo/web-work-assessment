@@ -23,6 +23,7 @@ class PromotionController
         
     }
 
+
     public function postSetBenefitRule()
     {
         $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
@@ -42,10 +43,10 @@ class PromotionController
         try {
             $this->promotionService->register($req);
 
-            View::redirect('/');
+            View::redirect('/promotion/promotions');
 
         } catch (ValidationException $e) {
-            View::redirect('/');
+            View::redirect('/promotion/promotions');
         }
 
     }
