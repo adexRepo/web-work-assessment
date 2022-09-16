@@ -119,4 +119,32 @@ class BenefitRuleRepository
             $query->closeCursor();
         }    
     }
+
+    public function findByUserIdAndDeptAndContract(BenefitRule $benefit):BenefitRule
+    {
+
+        $query = $this->connection->prepare(
+            "SELECT * FROM benefit_rule where user_id = ? and departement = ? and contract = ?"
+        );
+
+        $query->execute([
+            $benefit->getUserId(),
+            $benefit->getDepartement(),
+            $benefit->getContract(),
+        ]);
+
+        $outputQuery = $query->fetch();
+
+        if($outputQuery === false) return null;
+
+        try {
+            return $outputQuery;
+        } finally {
+            $query->closeCursor();
+        }
+        
+
+    }
+
+
 }

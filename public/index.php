@@ -18,6 +18,9 @@ Database::getConnection('prod');
 // Home Controller
 Router::add('GET', '/'                , HomeController::class, 'index'  ,[MustLoginMiddleware::class]);
 Router::add('GET', '/home/about-us'   , HomeController::class, 'aboutUs'    ,[MustLoginMiddleware::class]);
+Router::add('GET', '/promotion/promotions' , PromotionController::class, 'promotion'  ,[MustLoginMiddleware::class]);
+
+// popup
 Router::add('POST', '/popup/send-report' , HomeController::class, 'postSendReport' ,[MustLoginMiddleware::class]);
 Router::add('POST', '/popup/update-profile' , HomeController::class, 'postUpdateProfile' ,[MustLoginMiddleware::class]);
 Router::add('POST', '/popup/advice' , HomeController::class, 'postAdvice' ,[MustLoginMiddleware::class]);

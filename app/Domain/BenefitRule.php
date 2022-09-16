@@ -6,9 +6,9 @@ use DateTime;
 
 class BenefitRule
 {
-	private string     $ruleId           ;
-	private string     $userId           ;
-	private int     $promotionType    ;
+	private string     $ruleId       ;
+	private string     $userId       ;
+	private string $promotionType    ;
 	private int    $contract         ;
 	private int    $departement      ;
 	private int    $principalSalary  ;

@@ -11,7 +11,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-lg-12">
                                         <div class="text-xs h5 font-weight-bold text-primary text-uppercase mb-1">
-                                            Static Promotion Rule</div>
+                                            Benefit Employe Si Cepat</div>
                                     </div>
                                 </div>
                             </div>

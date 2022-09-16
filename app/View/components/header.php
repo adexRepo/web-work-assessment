@@ -62,7 +62,7 @@
                     <li><a href="/" class=" <?php if($model['title'] == 'Dashboard') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-secondary">Dashboard</a></li>
                     <li><a href="/attend/attendance" class=" <?php if($model['title'] == 'Attendance') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">Attendance</a></li>
                     <li><a href="/perform/performance" class=" <?php if($model['title'] == 'Performance') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">Performance</a></li>
-                    <li><a href="/home/promotions" class=" <?php if($model['title'] == 'Promotion') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">Promotions</a></li>
+                    <li><a href="/promotion/promotions" class=" <?php if($model['title'] == 'Promotion') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">Promotions</a></li>
                     <li><a href="/home/about-us" class=" <?php if($model['title'] == 'About Us') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">About Us</a></li>
                 </ul>
                 <div class="dropdown text-end">

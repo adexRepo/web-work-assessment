@@ -4,6 +4,7 @@ namespace web\work\assessment\Controller;
 
 use web\work\assessment\App\View;
 use web\work\assessment\Config\Database;
+use web\work\assessment\Model\BenefitRuleRequest;
 use web\work\assessment\Service\PromotionService;
 use web\work\assessment\Model\SetBenefitRuleRequest;
 use web\work\assessment\Exception\ValidationException;
@@ -22,22 +23,6 @@ class PromotionController
         
     }
 
-    function promotion(): void
-    {
-        $user_info = [];
-        $code_info = [];
-        if(!empty($_COOKIE['USER_INFO'])){
-            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
-        }
-        if(!empty($_COOKIE['CODE_CC'])){
-            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
-        }
-        View::render('home/promotions',[
-            "title"=>"Promotion",
-            "user_info"=>$user_info,
-            "code"=>$code_info
-        ],true);
-    }
 
     public function postSetBenefitRule()
     {
@@ -58,11 +43,43 @@ class PromotionController
         try {
             $this->promotionService->register($req);
 
-            View::redirect('/home/promotions');
+            View::redirect('/promotion/promotions');
 
         } catch (ValidationException $e) {
-            View::redirect('/home/promotions');
+            View::redirect('/promotion/promotions');
         }
 
     }
+
+    function promotion(): void
+    {
+        $user_info = [];
+        $code_info = [];
+        if(!empty($_COOKIE['USER_INFO'])){
+            $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
+        }
+        if(!empty($_COOKIE['CODE_CC'])){
+            $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
+        }
+
+        $req = new BenefitRuleRequest();
+        $req->setUserId($user_info['userId']);
+        $req->setDept($user_info['departement']);
+        $req->setContract($user_info['contract']);
+
+        try {
+            $this->promotionService->benefitRule($req);
+        } catch (ValidationException $e) {
+            View::redirect('/');
+        }
+        
+    
+
+        View::render('promotion/promotions',[
+            "title"=>"Promotion",
+            "user_info"=>$user_info,
+            "code"=>$code_info
+        ],true);
+    }
+
 }
