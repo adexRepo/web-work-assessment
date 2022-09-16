@@ -38,16 +38,19 @@ class DashboardService
             $thisUser = $this->packageRepo->findTotalUserPackageSentMonth($userId,$month);
             $allUser = $this->packageRepo->findTotalAllUserPackageSentThisMonth($month);
             
-            $persentation = $thisUser / $allUser * 100;
-            $commision =  number_format($thisUser * 2500,2,',','.');// static 2500 for now, need to see rule
+            if($thisUser != 0 ||   $allUser != 0){
+                $persentation = $thisUser / $allUser * 100;
+                $commision =  number_format($thisUser * 2500,2,',','.');// static 2500 for now, need to see rule
+            }
+
 
             $res = new DashboardResponse();
             $res->setAttendance($needAttendance);
             $res->setClockin($clockin);
             $res->setUserId($userId);
             $res->setTotalPackage($thisUser);
-            $res->setPersentationPackage($persentation);
-            $res->setCommission($commision);
+            $res->setPersentationPackage($persentation ?? 0);
+            $res->setCommission($commision ?? 0);
 
             Database::commit();
             return $res;
