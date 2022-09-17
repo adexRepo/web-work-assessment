@@ -101,7 +101,6 @@ class PackageService
             $res = new PerformanceHistoryResponse();
             $res->setPerformanceHistory($arrOutput);
 
-            return $res;
             Database::commit();
             return $res;
         } catch (\Throwable $th) {
@@ -121,8 +120,22 @@ class PackageService
             throw new ValidationException("All Input can not blank", 0);
          }
          return true;
+    }
 
+    public function averagePackageMonth(string $month):PerformanceHistoryResponse
+    {
+        try {
+            Database::beginTransaction();
+            $output = $this->packageRepo->findAverageMonthlyAllUser($month);
 
-        return true;
+            $res = new PerformanceHistoryResponse();
+            $res->setAveragePackageMonthly($output);
+
+            Database::commit();
+            return $res;
+        } catch (\Throwable $th) {
+            Database::rollBack();
+            throw $th;
+        }
     }
 }

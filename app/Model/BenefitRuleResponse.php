@@ -7,7 +7,6 @@ use web\work\assessment\Domain\BenefitRule;
 class BenefitRuleResponse
 {
     private BenefitRule $benefit;
-
     /**
      * Get the value of benefit
      *
@@ -31,4 +30,5 @@ class BenefitRuleResponse
 
         return $this;
     }
+
 }

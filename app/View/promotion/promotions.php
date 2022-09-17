@@ -1,3 +1,21 @@
+ <?php
+    $rule = $model['rule'];
+    $ruleId = $rule->getRuleId();
+    $promotionTargetDay = $rule->getPromotionStandart();
+    $promotionType = $rule->getPromotionType();
+    $targetIntDay = $rule->getTargetOfDay();
+    $interestAmt = $rule->getInterestSalary();
+    $average = $model['average'];
+
+    
+    function rupiah($angka){
+	
+        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+        return $hasil_rupiah;
+     
+    }
+ ?>
+ 
  <main class="flex-shrink-0">
         <div class="container shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-0 text-center">
@@ -26,9 +44,9 @@
                                             <div class="text-xs h5 font-weight-bold text-primary text-uppercase mb-1">
                                                 Promotion</div><hr/>
                                             <div class="h6 mb-0 font-weight-bold text-gray-800 text-center">
-                                                If you consistently sent package more than 30 packages in one day
-                                                until 30 days, you will be promoted or get a bonus of 
-                                                <span class="text-primary">Rp. 300.000</span> this month
+                                                If you consistently sent package more than <?= $targetIntDay ?> packages in one day
+                                                until <?= $promotionTargetDay ?>  days, you will be promoted 
+                                                <span class="text-primary"><?= $promotionType ?> </span> Next month!
                                             </div>
                                         </div>
                                     </div>
@@ -43,8 +61,8 @@
                                             <div class="text-xs h5 font-weight-bold text-primary text-uppercase mb-1">
                                                 Bonuses</div><hr/>
                                             <div class="h6 mb-0 font-weight-bold text-gray-800 text-center">
-                                                If you sent 30 package in one day you will get bonus
-                                                <span class="text-primary">Rp. 125.000</span> this month
+                                                If you sent <?= $targetIntDay ?> package in one day you will get bonus
+                                                <span class="text-primary"><?= rupiah($interestAmt) ?></span> this month
                                             </div>                                       
                                          </div>
                                     </div>
@@ -59,7 +77,7 @@
                                             <div class="text-xs h5 font-weight-bold text-primary text-uppercase mb-1">
                                                 Average Sent Today</div><hr/>
                                             <div class="h6 mb-0 font-weight-bold text-gray-800 text-center ">
-                                                <span class="text-primary" style="font-size: 30px">30 packages  sent</span>
+                                                <span class="text-primary" style="font-size: 30px"><?= $average ?> packages  sent</span>
                                             </div>
                                         </div>
                                     </div>

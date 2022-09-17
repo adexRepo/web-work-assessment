@@ -60,14 +60,13 @@ class PromotionService
             Database::beginTransaction();
 
             $benefit = new BenefitRule();
-            $benefit->setUserId           ($req->getUserId());
             $benefit->setDepartement      ($req->getDept());
             $benefit->setContract      ($req->getContract());
 
-            $resultData = $this->benefitRuleRepository->findByUserIdAndDeptAndContract($benefit);
-            
+            $resultDataRule = $this->benefitRuleRepository->findByUserIdAndDeptAndContract($benefit);
+
             $response = new BenefitRuleResponse();
-            $response->setBenefit($resultData);
+            $response->setBenefit($resultDataRule);
             Database::commit();
             return $response;
         } catch (\Throwable $th) {
