@@ -3,16 +3,20 @@
 namespace web\work\assessment\Controller;
 
 use web\work\assessment\App\View;
+use web\work\assessment\Module\Dates;
 use web\work\assessment\Config\Database;
+use web\work\assessment\Service\PackageService;
 use web\work\assessment\Model\BenefitRuleRequest;
 use web\work\assessment\Service\PromotionService;
 use web\work\assessment\Model\SetBenefitRuleRequest;
 use web\work\assessment\Exception\ValidationException;
 use web\work\assessment\Repository\BenefitRuleRepository;
+use web\work\assessment\Repository\PackageSendedTraceRepository;
 
 class PromotionController
 {
     private PromotionService $promotionService;
+    private PackageService $packageService;
 
     public function __construct()
     {
@@ -20,7 +24,8 @@ class PromotionController
 
         $benefitRuleRepository = new BenefitRuleRepository($connection);
         $this->promotionService = new PromotionService($benefitRuleRepository);
-        
+        $packageRepository = new PackageSendedTraceRepository($connection);
+        $this->packageService = new PackageService($packageRepository);
     }
 
 
@@ -62,23 +67,27 @@ class PromotionController
             $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
         }
 
+        $month = date('Ym', strtotime(Dates::dateNowMonth())).'%';
+
+
         $req = new BenefitRuleRequest();
-        $req->setUserId($user_info['userId']);
-        $req->setDept($user_info['departement']);
+        $req->setDept((int)$user_info['departement']);
         $req->setContract($user_info['contract']);
 
         try {
-            $this->promotionService->benefitRule($req);
+            $rule = $this->promotionService->benefitRule($req);
+            $package = $this->packageService->averagePackageMonth($month);
+
         } catch (ValidationException $e) {
             View::redirect('/');
         }
-        
-    
 
         View::render('promotion/promotions',[
             "title"=>"Promotion",
             "user_info"=>$user_info,
-            "code"=>$code_info
+            "code"=>$code_info,
+            "rule"=>$rule->getBenefit(),
+            "average"=>$package->getAveragePackageMonthly()
         ],true);
     }
 

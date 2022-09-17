@@ -147,4 +147,30 @@ class PackageSendedTraceRepository
         $query->closeCursor();
         return $outputQuery;
     }
+
+    public function findAverageMonthlyAllUser(string $month):int
+    {
+
+        $query = $this->connection->prepare(
+            "SELECT
+                sum(total_package)/count(total_package) as average
+            from
+                package_sended_trace
+            where 
+                date like ? "
+            );
+
+        $query->execute([
+            $month,
+        ]);
+        $outputQuery = $query->fetch();
+        if($outputQuery === false) return 0;
+        
+        $res = ceil((float)$outputQuery[0]);
+
+        $query->closeCursor();
+        return $res;
+
+    }
+    
 }
