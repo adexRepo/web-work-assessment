@@ -50,11 +50,6 @@ class HomeController
     {
         $dateNow = Dates::dateNowFormatYmd();
         $userCurrent = $this->sessionService->currentSession();
-        $request = new DashboardRequest();
-        $request->setUserId($userCurrent->getUserId());
-        $request->setDate($dateNow);
-
-        $response = $this->dashboardService->inquiryDataDashboard($request);
         $user_info = [];
         $code_info = [];
         if(!empty($_COOKIE['USER_INFO'])){
@@ -63,6 +58,14 @@ class HomeController
         if(!empty($_COOKIE['CODE_CC'])){
             $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
         }
+
+        $request = new DashboardRequest();
+        $request->setUserId($userCurrent->getUserId());
+        $request->setDate($dateNow);
+        $request->setDepartement((int)$user_info['departement']);
+        $request->setContract($user_info['contract']);
+
+        $response = $this->dashboardService->inquiryDataDashboard($request);
 
         View::render('Home/index',[
             "title"=>"Dashboard",

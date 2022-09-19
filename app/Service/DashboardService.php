@@ -28,6 +28,8 @@ class DashboardService
             $month = date('Ym', strtotime($req->getDate())).'%';
             $userId = $req->getUserId();
             $dateNow = $req->getDate();
+            $dept = $req->getDepartement();
+            $contract = $req->getContract();
 
             // attendance
             $outputQueryAttendance = $this->attendRepo->checkAttendaceToday($userId, $dateNow);
@@ -35,12 +37,16 @@ class DashboardService
             $clockin = $needAttendance ? "00:00:00" : $outputQueryAttendance->getClockIn();
             
             // total package sent
-            $thisUser = $this->packageRepo->findTotalUserPackageSentMonth($userId,$month);
+            $thisUser = $this->packageRepo->findTotalUserPackageSentMonth($userId,$month,$dept,$contract);
             $allUser = $this->packageRepo->findTotalAllUserPackageSentThisMonth($month);
-            
+
             if($thisUser != 0 ||   $allUser != 0){
-                $persentation = $thisUser / $allUser * 100;
-                $commision =  number_format($thisUser * 2500,2,',','.');// static 2500 for now, need to see rule
+                $totalPackage = (int)$thisUser['total_package'];
+                $target = $thisUser['target'];
+                $interestSalary = ceil($thisUser['interest_salary']/$target);
+
+                $persentation = $totalPackage / $allUser * 100;
+                $commision =  number_format($totalPackage * $interestSalary,2,',','.');
             }
 
 
@@ -48,7 +54,7 @@ class DashboardService
             $res->setAttendance($needAttendance);
             $res->setClockin($clockin);
             $res->setUserId($userId);
-            $res->setTotalPackage($thisUser);
+            $res->setTotalPackage($totalPackage);
             $res->setPersentationPackage($persentation ?? 0);
             $res->setCommission($commision ?? 0);
 
