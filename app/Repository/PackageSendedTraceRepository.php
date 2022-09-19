@@ -102,16 +102,28 @@ class PackageSendedTraceRepository
     public function findTotalUserPackageSentMonth(string $userId, string $date)
     {
         $query = $this->connection->prepare(
-            "SELECT sum(total_package) from package_sended_trace
-            WHERE user_id = ? and date like ?"
+            "SELECT
+                sum(total_package) as total_package
+                , c.interest_salary 
+                , c.target
+            from
+                package_sended_trace a,
+                user_base b ,
+                benefit_rule c
+            where
+                a.user_id =?
+                and date like ?
+                and a.user_id = b.user_id 
+                and b.contract = c.contract 
+                and b.departement = c.departement "
         );
         $query->execute([$userId, $date]);
         $outputQuery = $query->fetch();
-        if($outputQuery === false) return 0;
 
+        if($outputQuery === false) return 0;
         $query->closeCursor();
 
-        return $outputQuery[0];
+        return $outputQuery;
     }
 
     public function findByUserIdAndMonth(string $userId, string $monthNow) :?array
