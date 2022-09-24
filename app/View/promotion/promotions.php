@@ -6,13 +6,19 @@
     $targetIntDay = $rule->getTargetOfDay();
     $interestAmt = $rule->getInterestSalary();
     $average = $model['average'];
+    $summary = $model['summary'];
 
-    
     function rupiah($angka){
-	
         $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
         return $hasil_rupiah;
      
+    }
+
+    function month($data){
+        $monthNum  = $data;
+        $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+        $monthName = $dateObj->format('F');
+        return $monthName;
     }
  ?>
  
@@ -91,88 +97,29 @@
                         <table class="table table-striped table-hover table-bordered align-middle">
                             <thead>
                               <tr>
+                                <th class="table-primary align-middle" scope="col">No</th>
                                 <th class="table-primary align-middle" scope="col">Month</th>
                                 <th class="table-primary align-middle" scope="col">Name</th>
                                 <th class="table-primary align-middle" scope="col">Package You Sent</th>
-                                <th class="table-primary align-middle" scope="col">Average Sent</th>
+                                <th class="table-primary align-middle" scope="col">Average Sent all</th>
                                 <th class="table-primary align-middle" scope="col">Package You Sent / Average Sent</th>
-                                <th class="table-primary align-middle" scope="col">Average Attendance Early</th>
+                                <th class="table-primary align-middle" scope="col">Total Attendance</th>
                                 <th class="table-primary align-middle" scope="col">Result</th> <!-- Bonus or Promotion -->
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">Juni</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">July</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">August</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Adek</td>
-                                <td>30</td>
-                                <td>25</td>
-                                <td>120%</td>
-                                <td>07:40</td>
-                                <td>Bonus : Rp 40.000</td>
-                              </tr>
+                              <?php foreach ($summary as $index => $item): ?>
+                                <tr>
+                                    <th scope="row"><?= $index+1?></th>
+                                    <td><?= month($item['months']) ?></td>
+                                    <td><?= $item['name'] ?></td>
+                                    <td><?= $item['tot_package'] ?></td>
+                                    <td><?= $item['average_sent'] ?></td>
+                                    <td><?= $item['percent_sent']?>%</td>
+                                    <td><?= $item['tot_login'] ?></td>
+                                    <td><?= rupiah($item['bonus']) ?></td>
+                                </tr>
+                                <?php endforeach; ?>
                             </tbody>
                           </table>
                     </div>

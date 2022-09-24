@@ -12,6 +12,8 @@ use web\work\assessment\Model\PerformanceHistoryRequest;
 use web\work\assessment\Model\SendReportPackageResponse;
 use web\work\assessment\Model\PerformanceHistoryResponse;
 use web\work\assessment\Repository\PackageSendedTraceRepository;
+use web\work\assessment\Model\SummaryWorkHistoryRequest;
+use web\work\assessment\Model\SummaryWorkHistoryResponse;
 
 class PackageService
 {
@@ -133,6 +135,24 @@ class PackageService
 
             Database::commit();
             return $res;
+        } catch (\Throwable $th) {
+            Database::rollBack();
+            throw $th;
+        }
+    }
+
+
+    public function summaryWorkHistory(SummaryWorkHistoryRequest $req):SummaryWorkHistoryResponse
+    {
+        try {
+            Database::beginTransaction();
+
+            $resultData =$this->packageRepo->findSummaryWork($req->getUserId());
+
+            $response = new SummaryWorkHistoryResponse();
+            $response->setSummary($resultData);
+            Database::commit();
+            return $response;
         } catch (\Throwable $th) {
             Database::rollBack();
             throw $th;

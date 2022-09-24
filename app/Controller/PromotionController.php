@@ -12,6 +12,7 @@ use web\work\assessment\Model\SetBenefitRuleRequest;
 use web\work\assessment\Exception\ValidationException;
 use web\work\assessment\Repository\BenefitRuleRepository;
 use web\work\assessment\Repository\PackageSendedTraceRepository;
+use web\work\assessment\Model\SummaryWorkHistoryRequest;
 
 class PromotionController
 {
@@ -74,9 +75,13 @@ class PromotionController
         $req->setDept((int)$user_info['departement']);
         $req->setContract($user_info['contract']);
 
+        $req2 = new SummaryWorkHistoryRequest();
+        $req2->setUserId($user_info['userId']);
+
         try {
             $rule = $this->promotionService->benefitRule($req);
             $package = $this->packageService->averagePackageMonth($month);
+            $summary = $this->packageService->summaryWorkHistory($req2);
 
         } catch (ValidationException $e) {
             View::redirect('/');
@@ -87,7 +92,8 @@ class PromotionController
             "user_info"=>$user_info,
             "code"=>$code_info,
             "rule"=>$rule->getBenefit(),
-            "average"=>$package->getAveragePackageMonthly()
+            "average"=>$package->getAveragePackageMonthly(),
+            "summary"=>$summary->getSummary()
         ],true);
     }
 

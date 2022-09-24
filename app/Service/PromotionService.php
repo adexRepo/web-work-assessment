@@ -7,6 +7,8 @@ use web\work\assessment\Domain\BenefitRule;
 use web\work\assessment\Model\BenefitRuleRequest;
 use web\work\assessment\Model\BenefitRuleResponse;
 use web\work\assessment\Model\SetBenefitRuleRequest;
+use web\work\assessment\Model\SummaryWorkHistoryRequest;
+use web\work\assessment\Model\SummaryWorkHistoryResponse;
 use web\work\assessment\Repository\BenefitRuleRepository;
 
 class PromotionService
@@ -17,7 +19,6 @@ class PromotionService
     {
         $this->benefitRuleRepository = $benefitRuleRepository;
     }
-
 
     public function register(SetBenefitRuleRequest $req)
     {
@@ -74,4 +75,5 @@ class PromotionService
             throw $th;
         }
     }
+
 }

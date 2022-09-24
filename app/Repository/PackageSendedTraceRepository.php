@@ -184,5 +184,68 @@ class PackageSendedTraceRepository
         return $res;
 
     }
-    
+
+
+    public function findSummaryWork(string $userId) :?array
+    {
+        $query = $this->connection->prepare(
+            "WITH tempTable as (
+                    select
+                        substr(a.date, 5,2) as dates 
+                        , sum(total_package)as tot_all_sent 
+                        , ceil(sum(total_package)/count(a.user_id)) as average
+                    from
+                        package_sended_trace a
+                    group by substr(date, 5,2)
+                )
+                SELECT
+                    a.months as months
+                    , a.user_id 
+                    , c.name
+                    , b.average as average_sent
+                    , a.tot_package
+                    , b.tot_all_sent
+                    , ceil(a.tot_package / b.tot_all_sent *100) as percent_sent
+                    , e.tot_login
+                    , ceil(a.tot_package * d.interest_salary/target) as bonus
+                from
+                    (
+                        select
+                            substr(date, 5,2) as months
+                            ,user_id 
+                            ,sum(total_package) as tot_package
+                        from
+                            package_sended_trace
+                        where user_id =?
+                        group by substr(date, 5,2)
+                        ) a,
+                    (
+                        select
+                            substr(date, 5,2) as months
+                            , count(status) as tot_login
+                        from
+                            attendance_trace
+                            where user_id =?
+                        group by substr(date, 5,2)
+                    ) e,
+                    tempTable b,
+                    user_base c,
+                    benefit_rule d
+                where
+                    a.months = b.dates
+                    and a.months = e.months
+                    and a.user_id = c.user_id 
+                    and c.departement = d.departement
+                    and c.contract = d.contract
+                order by a.months desc "
+            );
+
+        $query->execute([$userId,$userId]);
+        $outputQuery = $query->fetchAll();
+        if($outputQuery === false) return null;
+
+        $query->closeCursor();
+        return $outputQuery;
+    }
+
 }
