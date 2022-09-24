@@ -9,16 +9,18 @@
                         <div class="col-xl">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 10rem; object-fit: cover;"
-                                            src="https://raw.githubusercontent.com/adexRepo/web-work-assessment/302abd261f4fb5694066d3345c357319eee0fee8/app/View/assets/images/no-photo.jpg" alt="...">
-                                    </div>
-                                    <div class="text-center">
-                                        <h3><span class="badge bg-primary">ADEK KRISTIYANTO</span></h5>
-                                        <p>201943501163</p>
-                                        <p>
-                                            Fullstack Developer
-                                        </p>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="container shadow-2-strong" style="border-radius: 1rem;">
+                                            <img class="px-sm-4 mt-3 mb-4" style="  width: 25rem; height: 20rem; object-fit: cover;"
+                                                src="https://avatars.githubusercontent.com/u/88611631?s=400&u=7cb389e82312bdf204f533fc45c7a8626340232f&v=4" alt="...">
+                                        </div>
+                                        <div class="col">
+                                            <h3><span class="badge bg-primary">ADEK KRISTIYANTO</span></h5>
+                                            <p>201943501163</p>
+                                            <p>
+                                                https://github.com/adexRepo
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
