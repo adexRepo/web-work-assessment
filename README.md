@@ -1,10 +1,16 @@
-# TUGAS KULIAH PEMROGRAMAN WEB LANJUT
-[web-work-assessment]
+# Task College - SI CEPAT
+[About-Work-Assessment]
+My Friend working in this company be a coordinator driver.
+OPEN SOURCE! FOR FREE!
+# Run Simply
+0. add database in file database in your local
+1. Start Apache and MySQL
+2. open in your browser http://localhost:80
+3. user : user3 - password : Test123!
+4. Enjoy!
+note : if you want to see test file, you need to install composer first ya!
 
-# Note
-.htaccess >> pakai punya nya orang, just make for routing can read again / rewrite in browser,
-
-# How to run in local first way
+# How to run local using domain host custom
 1. clone this project from github https://github.com/adexRepo/web-work-assessment.git
 2. install composer if still not install composer https://getcomposer.org/Composer-Setup.exe
     this project just use 
@@ -42,15 +48,6 @@
 [**]if you change step 5 and step 6 php-mvc to web-work-assessment you can open
     [a]http://web-work-assessment.local/  ## btw don't forget to open xampp run apache and mysql
 
-# how to run in local second way
-1. add ddl db and add composer also
-2. if you using vs code, just open terminal that terminal go to public and run php -S localhost:8080
-    but you must also need to run mysql in xampp
-3. if you just want to using xampp for run web server,, yaa just run apache and mysql
-    but you need to follow step 3 in first way (cara pertama diatas)
-3. by default localhost:8080 just open in browser
-4. for now this app just can open sign in and register, register already worked but sign in still procced
-
 # How to see architecture.wsd
 1. install chocholatey
 2. install plantUML or run : choco install plantuml
@@ -61,14 +58,3 @@
 
 * or open https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
 copy paste content in architecture.wsd to that demo server
-
-# schedule
-1. update info user (senin)
-2. new popup for add information in benefit.rule , settings (senin)
-3. show data benefit_rule to Promotions (selasa)
-4. finishing about - us (selasa)
-5. fix dashboard (rabu)
-6. add function download file (rabu)
-7. add authority for settings (kamis)
-8. hosting (kamis)
-9. share to pak akbar

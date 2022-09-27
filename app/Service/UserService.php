@@ -141,6 +141,7 @@ class UserService
     public function sendAdvice(SendAdviceRequest $req)
     {
         $advice = new AdviceTrace();
+        $advice->setAdviceId($req->getAdviceId());
         $advice->setUserId($req->getUserId());
         $advice->setTitle($req->getTitle());
         $advice->setMessage($req->getMessage());
@@ -149,8 +150,6 @@ class UserService
             Database::beginTransaction();
 
             $this->userBaseRepository->insertAdvice($advice);
-
-            $this->addInCookieUser($req->getUserId());
 
             Database::commit();
         } catch (\Throwable $th) {

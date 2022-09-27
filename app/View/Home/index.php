@@ -1,68 +1,30 @@
 
 <script>
-    function createChartLine() {
-            $("#chartLine").kendoChart({
-                title: {
-                    text: "Gross domestic product growth \n /GDP annual %/"
-                },
-                legend: {
-                    position: "bottom"
-                },
-                chartArea: {
-                    background: ""
-                },
-                seriesDefaults: {
-                    type: "line",
-                    style: "smooth"
-                },
-                series: [{
-                    name: "India",
-                    data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
-                },{
-                    name: "World",
-                    data: [1.988, 2.733, 3.994, 3.464, 4.001, 3.939, 1.333, -2.245, 4.339, 2.727]
-                },{
-                    name: "Russian Federation",
-                    data: [4.743, 7.295, 7.175, 6.376, 8.153, 8.535, 5.247, -7.832, 4.3, 4.3]
-                },{
-                    name: "Haiti",
-                    data: [-0.253, 0.362, -3.519, 1.799, 2.252, 3.343, 0.843, 2.877, -5.416]
-                }],
-                valueAxis: {
-                    labels: {
-                        format: "{0}%"
-                    },
-                    line: {
-                        visible: false
-                    },
-                    axisCrossingValue: -10
-                },
-                categoryAxis: {
-                    categories: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011],
-                    majorGridLines: {
-                        visible: false
-                    },
-                    labels: {
-                        rotation: "auto"
-                    }
-                },
-                tooltip: {
-                    visible: true,
-                    format: "{0}%",
-                    template: "#= series.name #: #= value #"
-                }
-            });
-        }
+
+    $(document).ready(controls);
+    $(document).bind("kendo:skinChange", controls);
+
+    function controls() {
+        createChartLine();
+        createChartPie();
+    }
+
+    let arrayAttendances = <?php echo json_encode($model['chart_attendance']); ?>;
+    let arrayPackages = <?php echo json_encode($model['chart_package']); ?>;
+
+    for (let index = 0; index < arrayAttendances.length; index++) {
+        arrayAttendances[index].value = arrayAttendances[index].value / arrayAttendances[index].total*100;
+    }
+
+    arrayPackages = mapping(arrayPackages);
 
     function createChartPie() {
         $("#chart").kendoChart({
             title: {
                 position: "bottom",
-                text: "Share of Internet Population Growth, 2007 - 2012"
+                text: "Attendance Of Years"
             },
-            legend: {
-                visible: false
-            },
+            legend: { visible: false },
             chartArea: {
                 background: ""
             },
@@ -73,34 +35,11 @@
                     template: "#= category #: \n #= value#%"
                 }
             },
-            series: [{
+            series: [
+                {
                 type: "pie",
                 startAngle: 150,
-                data: [{
-                    category: "Asia",
-                    value: 53.8,
-                    color: "#9de219"
-                },{
-                    category: "Europe",
-                    value: 16.1,
-                    color: "#90cc38"
-                },{
-                    category: "Latin America",
-                    value: 11.3,
-                    color: "#068c35"
-                },{
-                    category: "Africa",
-                    value: 9.6,
-                    color: "#006634"
-                },{
-                    category: "Middle East",
-                    value: 5.2,
-                    color: "#004d38"
-                },{
-                    category: "North America",
-                    value: 3.6,
-                    color: "#033939"
-                }]
+                data: arrayAttendances
             }],
             tooltip: {
                 visible: true,
@@ -109,19 +48,68 @@
         });
     }
 
-    function controls() {
-        createChartLine();
-        createChartPie();
+    function createChartLine() {
+        $("#chartLine").kendoChart({
+            title: {text: "Package Monthly"},
+            legend: {position: "bottom"},
+            chartArea: {background: ""},
+            seriesDefaults: {
+                type: "line",
+                style: "smooth"
+            },
+            series: [{
+                name: arrayPackages.name,
+                data: arrayPackages.data
+            }],
+            valueAxis: {
+                labels: {
+                    format: "{0}%"
+                },
+                line: {
+                    visible: false
+                },
+                axisCrossingValue: -10
+            },
+            categoryAxis: {
+                categories: arrayPackages.categories,
+                majorGridLines: {
+                    visible: false
+                },
+                labels: {
+                    rotation: "auto"
+                }
+            },
+            tooltip: {
+                visible: true,
+                format: "{0}%",
+                template: "#= series.name #: #= value #"
+            }
+        });
     }
 
-    $(document).ready(controls);
-    $(document).bind("kendo:skinChange", controls);
+    function mapping(arr){
+        let categories = [];
+        let name = [];
+        let data = [];
+        let final = {};
+
+        arr.forEach(element=> {
+            categories.push(element.category);
+            name.push(element.name);
+            data.push(element.data);
+        });
+
+        final.categories = categories;
+        final.name = [...new Set(name)]; 
+        final.data = data;
+        return final;
+    }
 
 </script>
-    
+
     <main class="flex-shrink-0" >
-        <div class="container shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-0 text-center" >
+        <div class="container shadow-2-strong" style="border-radius: 1rem;" >
+            <div class="card-body p-0 text-center" style="background-color: rgba(243, 243, 243,0.3);">
                 <div class="p-md-4 p-4 border rounded-3" >
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?= $model['title']  ?></h1>
@@ -174,9 +162,9 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2" >
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
+                                    <div class="row no-gutters align-items-center" >
                                         <div class="col-lg-12">
                                             <div class="text-xs h5 font-weight-bold text-primary text-uppercase mb-1">
                                                 Attendance Today</div><hr/>

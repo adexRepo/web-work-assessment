@@ -81,5 +81,38 @@ class AttendanceTraceRepository
         $query->closeCursor();
         return $outputQuery;
     }
+    public function findByAttendanceYears(string $userId) :?array
+    {
+        $query = $this->connection->prepare(
+            "SELECT
+                count(status) as value
+                , c.value   as category
+                -- ,case 
+                --     when c.code = 1 then '#9de219'
+                --     when c.code = 2 then '#90cc38'
+                --     else '#068c35'
+                -- end as color
+                , sum(count(status)) over() as total
+            from
+                attendance_trace a ,
+                (select value,code from code_base where `type` ='ATNDSTS' ) c
+            where
+                user_id =?
+                and substr(date,1,4) = substr(sysdate(),1,4) 
+                and a.status = c.code
+            group by
+                status
+            "
+            );
+
+        $query->execute([
+            $userId
+        ]);
+        $outputQuery = $query->fetchAll();
+        if($outputQuery === false) return null;
+
+        $query->closeCursor();
+        return $outputQuery;
+    }
 
 }

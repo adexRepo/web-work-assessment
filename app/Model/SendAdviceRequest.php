@@ -4,6 +4,7 @@ namespace web\work\assessment\Model;
 
 class SendAdviceRequest
 {
+    private ?string $adviceId = null;
     private ?string $userId = null;
     private ?string $title = null;
     private ?string $message = null;
@@ -76,6 +77,26 @@ class SendAdviceRequest
     public function setMessage(?string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adviceId
+     */ 
+    public function getAdviceId()
+    {
+        return $this->adviceId;
+    }
+
+    /**
+     * Set the value of adviceId
+     *
+     * @return  self
+     */ 
+    public function setAdviceId($adviceId)
+    {
+        $this->adviceId = $adviceId;
 
         return $this;
     }
