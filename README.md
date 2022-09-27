@@ -1,6 +1,7 @@
 # Task College - SI CEPAT
 [About-Work-Assessment]
-My Friend working in this company be a coordinator driver.
+Actually, my teacher suggests we use MVC, because do not have time a lot to learn MVC, but I am just curious!!.
+I think this is good for reference PHP MVC template.
 OPEN SOURCE! FOR FREE!
 # Run Simply
 0. add database in file database in your local
