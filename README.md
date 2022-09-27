@@ -1,6 +1,6 @@
 # Task College - SI CEPAT
 [About-Work-Assessment]
-Actually, my teacher suggests we use MVC, because do not have time a lot to learn MVC, but I am just curious!!.
+Actually, my teacher no suggests we use MVC, because do not have time a lot to learn MVC, but I am just curious!!.
 I think this is good for reference PHP MVC template.
 OPEN SOURCE! FOR FREE!
 # Run Simply
