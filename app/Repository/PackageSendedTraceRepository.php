@@ -248,4 +248,31 @@ class PackageSendedTraceRepository
         return $outputQuery;
     }
 
+    public function findBySentPackage(string $userId) :?array
+    {
+        $query = $this->connection->prepare(
+            "SELECT
+                substr(a.date,1,6) as category
+                , b.name  as name
+                , a.total_package as data
+            from
+                package_sended_trace a,
+                user_base b
+            where
+                a.user_id =?
+                and a.user_id = b.user_id 
+            group by substr(date,1,6)
+            "
+            );
+
+        $query->execute([
+            $userId
+        ]);
+        $outputQuery = $query->fetchAll();
+        if($outputQuery === false) return null;
+
+        $query->closeCursor();
+        return $outputQuery;
+    }
+
 }

@@ -16,23 +16,23 @@ use web\work\assessment\Middleware\MustNotLoginMiddleware;
 Database::getConnection('prod');
 
 // Home Controller
-Router::add('GET', '/'                , HomeController::class, 'index'  ,[MustLoginMiddleware::class]);
-Router::add('GET', '/home/about-us'   , HomeController::class, 'aboutUs'    ,[MustLoginMiddleware::class]);
+Router::add('GET', '/'                     , HomeController::class     , 'index'      ,[MustLoginMiddleware::class]);
+Router::add('GET', '/home/about-us'        , HomeController::class     , 'aboutUs'    ,[MustLoginMiddleware::class]);
 Router::add('GET', '/promotion/promotions' , PromotionController::class, 'promotion'  ,[MustLoginMiddleware::class]);
 
 // popup
-Router::add('POST', '/popup/send-report' , HomeController::class, 'postSendReport' ,[MustLoginMiddleware::class]);
+Router::add('POST', '/popup/send-report'    , HomeController::class, 'postSendReport'    ,[MustLoginMiddleware::class]);
 Router::add('POST', '/popup/update-profile' , HomeController::class, 'postUpdateProfile' ,[MustLoginMiddleware::class]);
-Router::add('POST', '/popup/advice' , HomeController::class, 'postAdvice' ,[MustLoginMiddleware::class]);
-Router::add('GET', '/popup/clockin'   , HomeController::class, 'clockIn' ,[MustLoginMiddleware::class]);
+Router::add('POST', '/popup/advice'         , HomeController::class, 'postAdvice'        ,[MustLoginMiddleware::class]);
+Router::add('GET', '/popup/clockin'         , HomeController::class, 'clockIn'           ,[MustLoginMiddleware::class]);
 
 // Promotion Controller
 Router::add('POST', '/popup/set-benefit' , PromotionController::class, 'postSetBenefitRule' ,[MustLoginMiddleware::class]);
-Router::add('GET', '/home/promotions' , PromotionController::class, 'promotion'  ,[MustLoginMiddleware::class]);
+Router::add('GET', '/home/promotions'    , PromotionController::class, 'promotion'          ,[MustLoginMiddleware::class]);
 
 
 // Attendance Controller
-Router::add('GET', '/attend/attendance' , AttendanceController::class, 'attendance' ,[MustLoginMiddleware::class]);
+Router::add('GET', '/attend/attendance' , AttendanceController::class, 'attendance'  ,[MustLoginMiddleware::class]);
 
 // Performance Controller
 Router::add('GET', '/perform/performance', PerformanceController::class, 'performance',[MustLoginMiddleware::class]);

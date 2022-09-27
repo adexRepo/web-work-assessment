@@ -20,8 +20,8 @@
 <div class="modal fade" id="attendance" tabindex="-1" aria-labelledby="attendance" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="attendance">Attendance Before Work!</h5>
+            <div class="modal-header" style="background-color: rgba(230, 33, 41);">
+                <h4 class="modal-title text-white" id="attendance">Attendance Before Work!</h4>
             </div>
             <div class="modal-body text-center p-3">
                 <p>"Selamat pagi. Semoga hari ini membawa kegembiraan dari harapan kemarin."
@@ -37,8 +37,8 @@
 <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="logout" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="logout">Logout</h5>
+            <div class="modal-header" style="background-color: rgba(230, 33, 41);">
+                <h4 class="modal-title text-white" id="logout">Logout</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -62,13 +62,13 @@
 <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="logout" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="logout">Logout</h5>
+            <div class="modal-header" style="background-color: rgba(230, 33, 41);">
+                <h4 class="modal-title text-white" id="logout">Logout</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="modal-body text-center">
-                    <h5>Are you soure want to logout ?</h5>
+                    <h4>Are you soure want to logout ?</h4>
                     <hr />
                     <a href="/users/logout" class="btn btn-danger" role="button" style="color:white">Yes, Logout</a>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logout">
@@ -87,8 +87,8 @@
 <div class="modal fade" id="advToCompany" tabindex="-1" aria-labelledby="advToCompany" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="advToCompany">Advice to Company</h5>
+            <div class="modal-header" style="background-color: rgba(230, 33, 41);">
+                <h4 class="modal-title text-white" id="advToCompany">Advice to Company</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -115,8 +115,8 @@
 <div class="modal fade" id="settings" tabindex="-1" aria-labelledby="settings" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="settings">Settings Rule Benefit</h5>
+            <div class="modal-header" style="background-color: rgba(230, 33, 41);">
+                <h4 class="modal-title text-white" id="settings">Settings Rule Benefit</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="form-group p-2" method="post" action="/popup/set-benefit">
@@ -198,8 +198,8 @@
 <div class="modal fade" id="myProfile" tabindex="-1" aria-labelledby="myProfile" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myProfile">My Profile</h5>
+            <div class="modal-header" style="background-color: rgba(230, 33, 41);">
+                <h4 class="modal-title text-white" id="myProfile">My Profile</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

@@ -11,6 +11,8 @@ class DashboardResponse
     private ?int $totalPackage;
     private ?string $commission;
     private ?bool $attendance;
+	private ?Array $diagramAttendance;
+	private ?Array $diagramPackage;
 
 	/**
 	 * @return ?string
@@ -115,6 +117,46 @@ class DashboardResponse
 	 */
 	function setCommission(?string $commission): self {
 		$this->commission = $commission;
+		return $this;
+	}
+
+	/**
+	 * Get the value of diagramAttendance
+	 */ 
+	public function getDiagramAttendance()
+	{
+		return $this->diagramAttendance;
+	}
+
+	/**
+	 * Set the value of diagramAttendance
+	 *
+	 * @return  self
+	 */ 
+	public function setDiagramAttendance($diagramAttendance)
+	{
+		$this->diagramAttendance = $diagramAttendance;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of diagramPackage
+	 */ 
+	public function getDiagramPackage()
+	{
+		return $this->diagramPackage;
+	}
+
+	/**
+	 * Set the value of diagramPackage
+	 *
+	 * @return  self
+	 */ 
+	public function setDiagramPackage($diagramPackage)
+	{
+		$this->diagramPackage = $diagramPackage;
+
 		return $this;
 	}
 }   

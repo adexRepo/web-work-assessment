@@ -50,29 +50,29 @@
 
 <?php   
     $code = $model['code'];
-    // var_dump($model['user_info']);
-    // var_dump($model['user_info']['branchId']);
 ?>
 
 <body>
-    <header class="p-2 mb-3 border-bottom">
+    <header class="p-2 mb-3 border-bottom" style="background-color: rgba(230, 33, 41,0.9);">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="/" class=" <?php if($model['title'] == 'Dashboard') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-secondary">Dashboard</a></li>
-                    <li><a href="/attend/attendance" class=" <?php if($model['title'] == 'Attendance') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">Attendance</a></li>
-                    <li><a href="/perform/performance" class=" <?php if($model['title'] == 'Performance') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">Performance</a></li>
-                    <li><a href="/promotion/promotions" class=" <?php if($model['title'] == 'Promotion') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">Promotions</a></li>
-                    <li><a href="/home/about-us" class=" <?php if($model['title'] == 'About Us') echo "h5 font-weight-bold text-primary";?> nav-link px-2 link-dark">About Us</a></li>
+                    <li><a style="color:white" href="/" class=" <?php if($model['title'] == 'Dashboard') echo "h4 font-weight-bold text-white ";?> nav-link px-2 link-secondary">Dashboard</a></li>
+                    <li><a style="color:white" href="/attend/attendance" class=" <?php if($model['title'] == 'Attendance') echo "h4 font-weight-bold text-white  ";?> nav-link px-2 link-dark">Attendance</a></li>
+                    <li><a style="color:white" href="/perform/performance" class=" <?php if($model['title'] == 'Performance') echo "h4 font-weight-bold text-white ";?> nav-link px-2 link-dark">Performance</a></li>
+                    <li><a style="color:white" href="/promotion/promotions" class=" <?php if($model['title'] == 'Promotion') echo "h4 font-weight-bold text-white ";?> nav-link px-2 link-dark">Promotions</a></li>
+                    <li><a style="color:white" href="/home/about-us" class=" <?php if($model['title'] == 'About Us') echo "h4 font-weight-bold text-white ";?> nav-link px-2 link-dark">About Me</a></li>
                 </ul>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="https://avatars.githubusercontent.com/u/88611631?s=400&u=7cb389e82312bdf204f533fc45c7a8626340232f&v=4" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myProfile">My Profile</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#advToCompany">Advice to company</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#settings">Settings</a></li>
+                        <?php if($model['user_info']['userId'] == 'user1') {?>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#settings">Settings</a></li>
+                        <?php }?>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logout">Logout</a></li>
                     </ul>

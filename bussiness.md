@@ -4,15 +4,9 @@
         2. Persentation package sent this month compare with target in benefite rule
         3. total pacakge this month
         4. bonuses
-    2. Get file
-        1. export to excel , table history report
-        2. report package month, year
-        3. report employee registered contract or not
-        4. report attendance monthly
-        5. report bonus employe monthly
-        6. report who employee get Promotions
-        7. report who best employe month, consider with attendance, average package sent, remark tips etc
-        8. etc
+    2. Get file [no need]
+        1. Chart Pie about Attendance Years
+        2. Chart Line about Packages Sent Monthly
     3. Input
         1. field name (auto bind)
         2. field branch (auto bind)
@@ -22,9 +16,7 @@
         6. remark (mandatory if code combo value not 0)
         7. button
 # Performance
-    1. table trx input /day
-    2. if spv(1), will show his member (kyn/2) if adm/0 can see all
-    3. if login with member / karyawan biasa then just himself
+    1. table trx input /monthly
 # Bonus and promotion
     1. show rules for get bonus
     2. show progress bonus per day

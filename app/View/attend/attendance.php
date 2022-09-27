@@ -4,7 +4,7 @@
 
 <main class="flex-shrink-0">
   <div class="container shadow-2-strong" style="border-radius: 1rem;">
-    <div class="card-body p-0 text-center">
+    <div class="card-body p-0 text-center" style="background-color: rgba(243, 243, 243,0.3);">
       <div class="p-md-4 p-4 border rounded-3">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800"><?= $model['title']  ?></h1>

@@ -123,11 +123,12 @@ class UserBaseRepository
     {
         $query = $this->connection->prepare(
             "INSERT INTO 
-                advice_trace(user_id,title, message)
-                VALUES(?, ?, ?)"
+                advice_trace(advice_id,user_id,title, message)
+                VALUES(?, ?, ?, ?)"
         );
 
         $query->execute([
+            $advice->getAdviceId(),
             $advice->getUserId(),
             $advice->getTitle(),
             $advice->getMessage()

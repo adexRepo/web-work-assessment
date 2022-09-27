@@ -68,16 +68,18 @@ class HomeController
         $response = $this->dashboardService->inquiryDataDashboard($request);
 
         View::render('Home/index',[
-            "title"=>"Dashboard",
-            "userId"=>$userCurrent->getUserId(),
-            "name"=>$userCurrent->getName(),
-            "clockIn"=>$response->getClockIn(),
+            "title"              => "Dashboard",
+            "userId"             => $userCurrent->getUserId(),
+            "name"               => $userCurrent->getName(),
+            "clockIn"            => $response->getClockIn(),
             "persentationPackage"=> $response->getPersentationPackage(),
-            "totalPackage"=>$response->getTotalPackage(),
-            "commission"=>$response->getCommission(),
-            "attendance"=>$response->getAttendance(),
-            "user_info"=>$user_info,
-            "code"=>$code_info,
+            "totalPackage"       => $response->getTotalPackage(),
+            "commission"         => $response->getCommission(),
+            "attendance"         => $response->getAttendance(),
+            "chart_attendance"   => $response->getDiagramAttendance(),
+            "chart_package"      => $response->getDiagramPackage(),
+            "user_info"          => $user_info,
+            "code"               => $code_info,
         ],true);
     }
 
@@ -124,6 +126,7 @@ class HomeController
         $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
 
         $req = new SendAdviceRequest();
+        $req->setAdviceId(uniqid());
         $req->setUserId($user_info['userId']);
         $req->setTitle($_POST['title']);
         $req->setMessage($_POST['message']);
@@ -158,39 +161,6 @@ class HomeController
         }
     }
 
-    // function performance(): void
-    // {
-    //     $user_info = [];
-    //     $code_info = [];
-    //     if(!empty($_COOKIE['USER_INFO'])){
-    //         $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
-    //     }
-    //     if(!empty($_COOKIE['CODE_CC'])){
-    //         $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
-    //     }
-
-    //     View::render('home/performance',[
-    //         "title"=>"Performance",
-    //         "user_info"=>$user_info,
-    //         "code"=>$code_info
-    //     ],true);
-    // }
-    // function promotion(): void
-    // {
-    //     $user_info = [];
-    //     $code_info = [];
-    //     if(!empty($_COOKIE['USER_INFO'])){
-    //         $user_info = unserialize(base64_decode($_COOKIE['USER_INFO']));
-    //     }
-    //     if(!empty($_COOKIE['CODE_CC'])){
-    //         $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
-    //     }
-    //     View::render('home/promotions',[
-    //         "title"=>"Promotion",
-    //         "user_info"=>$user_info,
-    //         "code"=>$code_info
-    //     ],true);
-    // }
     function aboutUs(): void
     {
         $user_info = [];
@@ -202,7 +172,7 @@ class HomeController
             $code_info = unserialize(base64_decode($_COOKIE['CODE_CC']));
         }
         View::render('home/about-us',[
-            "title"=>"About Us",
+            "title"=>"About Me",
             "user_info"=>$user_info,
             "code"=>$code_info
         ],true);

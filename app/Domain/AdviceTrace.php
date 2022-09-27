@@ -7,6 +7,7 @@ use DateTime;
 
 class AdviceTrace
 {
+    private string $adviceId;
     private string $userId;
     private string $title;
     private string $message;
@@ -129,6 +130,26 @@ class AdviceTrace
     public function setDateUpdated(DateTime $dateUpdated): self
     {
         $this->dateUpdated = $dateUpdated;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adviceId
+     */ 
+    public function getAdviceId()
+    {
+        return $this->adviceId;
+    }
+
+    /**
+     * Set the value of adviceId
+     *
+     * @return  self
+     */ 
+    public function setAdviceId($adviceId)
+    {
+        $this->adviceId = $adviceId;
 
         return $this;
     }
