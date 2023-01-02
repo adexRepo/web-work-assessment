@@ -1,8 +1,7 @@
 # Task College - SI CEPAT
 [About-Work-Assessment]
-Actually, my teacher no suggests we use MVC, because do not have time a lot to learn MVC, but I am just curious!!.
-I think this is good for reference PHP MVC template.
-OPEN SOURCE! FOR FREE!
+Actually,Just For Learn!
+
 # Run Simply
 0. add database in file database in your local
 1. Start Apache and MySQL
